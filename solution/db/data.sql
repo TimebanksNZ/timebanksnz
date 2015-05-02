@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table `category`
 --
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'Transporation','2015-05-02 14:01:43',0),(2,'Help At Home','2015-05-02 14:01:43',0),(3,'Companionship','2015-05-02 14:01:43',0),(4,'Community Activities','2015-05-02 14:01:43',0),(5,'Wellness','2015-05-02 14:01:43',0),(6,'Recreation','2015-05-02 14:01:43',0),(7,'Education','2015-05-02 14:01:43',0),(8,'Arts, Crafts & Music','2015-05-02 14:01:43',0),(9,'Home','2015-05-02 14:01:43',0),(10,'Business Services','2015-05-02 14:01:43',0),(11,'Misc','2015-05-02 14:01:43',0),(12,'Transporation','2015-05-02 14:04:26',0),(13,'Help At Home','2015-05-02 14:04:26',0),(14,'Companionship','2015-05-02 14:04:26',0),(15,'Community Activities','2015-05-02 14:04:26',0),(16,'Wellness','2015-05-02 14:04:26',0),(17,'Recreation','2015-05-02 14:04:26',0),(18,'Education','2015-05-02 14:04:26',0),(19,'Arts, Crafts & Music','2015-05-02 14:04:26',0),(20,'Home','2015-05-02 14:04:26',0),(21,'Business Services','2015-05-02 14:04:26',0),(22,'Misc','2015-05-02 14:04:26',0),(23,'Errands / Shopping','2015-05-02 14:04:26',1),(24,'Local','2015-05-02 14:04:26',1),(25,'Long Distance','2015-05-02 14:04:26',1),(26,'Medical','2015-05-02 14:04:26',1),(27,'Train / Bus / Airport','2015-05-02 14:04:26',1),(28,'Worship','2015-05-02 14:04:26',1),(29,'Miscellaneous','2015-05-02 14:04:26',1),(30,'Child Care','2015-05-02 14:04:26',2),(31,'Cooking & Sewing','2015-05-02 14:04:26',2),(32,'Hair & Beauty','2015-05-02 14:04:26',2),(33,'Housekeeping / Chores','2015-05-02 14:04:26',2),(34,'Pet Care','2015-05-02 14:04:26',2),(35,'Respite Care','2015-05-02 14:04:26',2),(36,'Miscellaneous','2015-05-02 14:04:26',2);
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Transporation','2015-05-02 14:01:43',0),(2,'Help At Home','2015-05-02 14:01:43',0),(3,'Companionship','2015-05-02 14:01:43',0),(4,'Community Activities','2015-05-02 14:01:43',0),(5,'Wellness','2015-05-02 14:01:43',0),(6,'Recreation','2015-05-02 14:01:43',0),(7,'Education','2015-05-02 14:01:43',0),(8,'Arts, Crafts & Music','2015-05-02 14:01:43',0),(9,'Home','2015-05-02 14:01:43',0),(10,'Business Services','2015-05-02 14:01:43',0),(11,'Misc','2015-05-02 14:01:43',0),(12,'Transporation','2015-05-02 14:04:26',0),(13,'Help At Home','2015-05-02 14:04:26',0),(14,'Companionship','2015-05-02 14:04:26',0),(15,'Community Activities','2015-05-02 14:04:26',0),(16,'Wellness','2015-05-02 14:04:26',0),(17,'Recreation','2015-05-02 14:04:26',0),(18,'Education','2015-05-02 14:04:26',0),(19,'Arts, Crafts & Music','2015-05-02 14:04:26',0),(20,'Home','2015-05-02 14:04:26',0),(21,'Business Services','2015-05-02 14:04:26',0),(22,'Misc','2015-05-02 14:04:26',0),(23,'Errands / Shopping','2015-05-02 14:04:26',1),(24,'Local','2015-05-02 14:04:26',1),(25,'Long Distance','2015-05-02 14:04:26',1),(26,'Medical','2015-05-02 14:04:26',1),(27,'Train / Bus / Airport','2015-05-02 14:04:26',1),(28,'Worship','2015-05-02 14:04:26',1),(29,'Miscellaneous','2015-05-02 14:04:26',1),(30,'Child Care','2015-05-02 14:04:26',2),(31,'Cooking & Sewing','2015-05-02 14:04:26',2),(32,'Hair & Beauty','2015-05-02 14:04:26',2),(33,'Housekeeping / Chores','2015-05-02 14:04:26',2),(34,'Pet Care','2015-05-02 14:04:26',2),(35,'Respite Care','2015-05-02 14:04:26',2),(36,'Miscellaneous','2015-05-02 14:04:26',2);
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -45,12 +45,12 @@ LOCK TABLES `member_permission` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `members`
+-- Dumping data for table `member`
 --
 
-LOCK TABLES `members` WRITE;
-/*!40000 ALTER TABLE `members` DISABLE KEYS */;
-/*!40000 ALTER TABLE `members` ENABLE KEYS */;
+LOCK TABLES `member` WRITE;
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -72,31 +72,31 @@ LOCK TABLES `permission` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `tags`
+-- Dumping data for table `tag`
 --
 
-LOCK TABLES `tags` WRITE;
-/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+LOCK TABLES `tag` WRITE;
+/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `timebanks`
+-- Dumping data for table `timebank`
 --
 
-LOCK TABLES `timebanks` WRITE;
-/*!40000 ALTER TABLE `timebanks` DISABLE KEYS */;
-INSERT INTO `timebanks` VALUES (1,'Addington','www.addington.timebanks.nz',172.6362,-43.5321,'21 Church Square','','Addington','Christchurch','8024','',1,1),(2,'Lyttleton','http://www.lyttelton.timebanks.org/',172.722783,-43.602495,'54a Oxford Street','','Lyttelton','Christchurch','8082','',1,1);
-/*!40000 ALTER TABLE `timebanks` ENABLE KEYS */;
+LOCK TABLES `timebank` WRITE;
+/*!40000 ALTER TABLE `timebank` DISABLE KEYS */;
+INSERT INTO `timebank` VALUES (1,'Addington','www.addington.timebank.nz',172.6362,-43.5321,'21 Church Square','','Addington','Christchurch','8024','',1,1),(2,'Lyttleton','http://www.lyttelton.timebanks.org/',172.722783,-43.602495,'54a Oxford Street','','Lyttelton','Christchurch','8082','',1,1);
+/*!40000 ALTER TABLE `timebank` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `transactions`
+-- Dumping data for table `trade`
 --
 
-LOCK TABLES `transactions` WRITE;
-/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
+LOCK TABLES `trade` WRITE;
+/*!40000 ALTER TABLE `trade` DISABLE KEYS */;
+/*!40000 ALTER TABLE `trade` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `timebanks` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `timebanks`;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: timebanks
@@ -18,13 +16,13 @@ USE `timebanks`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `categories`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `categories` (
+CREATE TABLE `category` (
   `id_category` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `dateadded` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -54,31 +52,15 @@ CREATE TABLE `country` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `member_permission`
+-- Table structure for table `member`
 --
 
-DROP TABLE IF EXISTS `member_permission`;
+DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `member_permission` (
-  `id_member_permission` int(11) NOT NULL,
-  `id_member` char(36) NOT NULL,
-  `id_permission` int(11) NOT NULL,
-  PRIMARY KEY (`id_member_permission`),
-  UNIQUE KEY `member_permission_uk` (`id_member`,`id_permission`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `members`
---
-
-DROP TABLE IF EXISTS `members`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `members` (
-  `id_members` char(36) NOT NULL DEFAULT 'UUID()',
-  `timebank_id` int(11) NOT NULL,
+CREATE TABLE `member` (
+  `id_member` char(36) NOT NULL DEFAULT 'UUID()',
+  `id_timebank` int(11) NOT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'New users must be approved by the local timebank administrator',
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -93,17 +75,33 @@ CREATE TABLE `members` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `geo_lat` double NOT NULL,
   `geo_long` double NOT NULL,
-  `address_privacy` tinyint(1) NOT NULL COMMENT '0 = private\n1 = public to members of same time-bank',
   `phone_privacy` tinyint(1) NOT NULL COMMENT '0 = private\n1 = public to members of same time-bank',
   `email_address` varchar(100) NOT NULL,
-  `email_privacy` tinyint(1) NOT NULL COMMENT '0 = private\n1 = public to members of same time-bank',
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `primary_email_validated` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_members`),
+  `is_address_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to member of same time-bank',
+  `is_email_validated` tinyint(1) NOT NULL DEFAULT '0',
+  `is_email_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to members of same time-bank',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_member`),
   UNIQUE KEY `primary_email_UNIQUE` (`email_address`),
-  KEY `member_timebank_fk_idx` (`timebank_id`),
-  CONSTRAINT `member_timebank_fk` FOREIGN KEY (`timebank_id`) REFERENCES `timebanks` (`id_timebank`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Timebank members';
+  KEY `member_timebank_fk_idx` (`id_timebank`),
+  CONSTRAINT `member_timebank_fk` FOREIGN KEY (`id_timebank`) REFERENCES `timebank` (`id_timebank`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Timebank member';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `member_permission`
+--
+
+DROP TABLE IF EXISTS `member_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `member_permission` (
+  `id_member_permission` int(11) NOT NULL,
+  `id_member` char(36) NOT NULL,
+  `id_permission` int(11) NOT NULL,
+  PRIMARY KEY (`id_member_permission`),
+  UNIQUE KEY `member_permission_uk` (`id_member`,`id_permission`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,8 +125,8 @@ CREATE TABLE `offer_need` (
   PRIMARY KEY (`id_offer_need`),
   KEY `offer_need_member_fk_idx` (`id_user`),
   KEY `offer_need_timebank_fk_idx` (`id_timebank`),
-  CONSTRAINT `offer_need_member_fk` FOREIGN KEY (`id_user`) REFERENCES `members` (`id_members`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `offer_need_timebank_fk` FOREIGN KEY (`id_timebank`) REFERENCES `timebanks` (`id_timebank`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `offer_need_member_fk` FOREIGN KEY (`id_user`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `offer_need_timebank_fk` FOREIGN KEY (`id_timebank`) REFERENCES `timebank` (`id_timebank`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='A Tradeable entity';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -148,33 +146,33 @@ CREATE TABLE `permission` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `tags`
+-- Table structure for table `tag`
 --
 
-DROP TABLE IF EXISTS `tags`;
+DROP TABLE IF EXISTS `tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tags` (
-  `id_tags` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tag` (
+  `id_tag` int(11) NOT NULL AUTO_INCREMENT,
   `id_member` char(36) DEFAULT NULL,
   `id_offer_need` int(11) DEFAULT NULL,
   `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_tags`),
-  KEY `tag_members_fk_idx` (`id_member`),
+  PRIMARY KEY (`id_tag`),
+  KEY `tag_member_fk_idx` (`id_member`),
   KEY `tag_offer_need_fk_idx` (`id_offer_need`),
-  CONSTRAINT `tag_members_fk` FOREIGN KEY (`id_member`) REFERENCES `members` (`id_members`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `tag_member_fk` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tag_offer_need_fk` FOREIGN KEY (`id_offer_need`) REFERENCES `offer_need` (`id_offer_need`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tags for members, needs, offers.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tags for member, needs, offers.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `timebanks`
+-- Table structure for table `timebank`
 --
 
-DROP TABLE IF EXISTS `timebanks`;
+DROP TABLE IF EXISTS `timebank`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `timebanks` (
+CREATE TABLE `timebank` (
   `id_timebank` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -196,21 +194,21 @@ CREATE TABLE `timebanks` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `transactions`
+-- Table structure for table `trade`
 --
 
-DROP TABLE IF EXISTS `transactions`;
+DROP TABLE IF EXISTS `trade`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `transactions` (
-  `id_transactions` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `trade` (
+  `id_trade` int(11) NOT NULL AUTO_INCREMENT,
   `id_payer` char(36) NOT NULL,
   `id_payee` char(36) NOT NULL,
   `id_need_want` int(11) NOT NULL,
   `hours` decimal(7,2) unsigned NOT NULL COMMENT '99,999 hours max per transaction',
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text,
-  PRIMARY KEY (`id_transactions`)
+  PRIMARY KEY (`id_trade`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -223,4 +221,4 @@ CREATE TABLE `transactions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-02 14:51:12
+-- Dump completed on 2015-05-02 15:33:45
