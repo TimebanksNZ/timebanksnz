@@ -12,13 +12,14 @@ namespace Timebanks.NZ.DAL.MySql.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class country
+    public partial class tag
     {
-        public int id_country { get; set; }
+        public int id_tag { get; set; }
+        public Nullable<System.Guid> id_member { get; set; }
+        public Nullable<int> id_offer_need { get; set; }
         public string name { get; set; }
-        public string abbreviation { get; set; }
-        public System.DateTime date_added { get; set; }
-        public double geo_long { get; set; }
-        public double geo_lat { get; set; }
+    
+        public virtual member member { get; set; }
+        public virtual offer_need offer_need { get; set; }
     }
 }

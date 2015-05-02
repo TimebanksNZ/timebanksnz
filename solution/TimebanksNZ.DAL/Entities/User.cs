@@ -18,5 +18,6 @@ namespace TimebanksNZ.DAL.Entities
         public string PostalCode { get; set; }
         public string Address { get; set; }
         public string Community { get; set; }
+        public bool Approved { get; set; }
     }
 }

@@ -58,12 +58,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFramework\category.cs" />
-    <Compile Include="EntityFramework\country.cs" />
-    <Compile Include="EntityFramework\member.cs" />
-    <Compile Include="EntityFramework\offer_need.cs" />
-    <Compile Include="EntityFramework\timebank.cs" />
-    <Compile Include="EntityFramework\TimebanksNZ.cs" />
+    <Compile Include="EntityFramework\category.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\country.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\member.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\member_permission.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\offer_need.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\permission.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\tag.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\timebank.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\TimebanksNZ.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimebanksNZ.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\TimebanksNZ.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\TimebanksNZ.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\trade.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,9 +109,28 @@
       <Name>TimebanksNZ.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EntityDeploy Include="EntityFramework\TimebanksNZ.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TimebanksNZ.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityFramework\TimebanksNZ.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+      <LastGenOutput>TimebanksNZ.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EntityFramework\TimebanksNZ.edmx.diagram">
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+    </None>
+    <None Include="EntityFramework\TimebanksNZ.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+      <LastGenOutput>TimebanksNZ.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

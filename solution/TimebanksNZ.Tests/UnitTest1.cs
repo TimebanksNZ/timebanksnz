@@ -10,20 +10,15 @@ namespace TimebanksNZ.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            var t = new Timebanks.NZ.DAL.MySql.EntityFramework.TimebanksNZ();
+            var t = new Timebanks.NZ.DAL.MySql.EntityFramework.timebanksEntities();
 
-            member m = new member()
+            timebank tb = new timebank()
             {
-                first_name = "asdas",
-                last_name = "asdasd",
-                primary_email = "asdas@asda.com",
-                geo_lat = 0.00,
-                geo_long = 1.0,
-                address_privacy = false,
-                phone_privacy = false,
+                name = "",
             };
-    
-            t.members.Add(m);
+
+
+            t.timebanks.Add(tb);
             t.SaveChanges();
         }
     }
