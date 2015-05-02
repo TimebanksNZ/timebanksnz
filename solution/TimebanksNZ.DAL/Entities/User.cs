@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace TimebanksNZ.DAL.Entities
 {
     public class User : IUser
-    {
-        public Guid IdMember { get; set; }
-        public string Email { get; set; }
+    {        
+        public int IdTimebank { get; set; }
+        public string EmailAddress { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string City { get; set; }
         public string Suburb { get; set; }
-        public string PostalCode { get; set; }
+        public string Postcode { get; set; }
         public string Community { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
+        public string StreetAddress1 { get; set; }
+        public string StreetAddress2 { get; set; }
         public string MobilePhone { get; set; }
         public string HomePhone { get; set; }
         public string WorkPhone { get; set; }
@@ -29,8 +29,8 @@ namespace TimebanksNZ.DAL.Entities
         public DateTime Created { get; set; }
         public double GeoLat { get; set; }
         public double GeoLong { get; set; }
-        public Timebank TimeBank { get; set; }
         public bool IsEmailValidated { get; set; }
         public bool IsDeleted { get; set; }
+        public Guid IdMember { get; set; }
     }
 }
