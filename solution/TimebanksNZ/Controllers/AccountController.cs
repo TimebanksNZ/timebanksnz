@@ -169,12 +169,18 @@ namespace TimebanksNZ.Controllers
                 currUser.FirstName = model.FirstName;
                 currUser.LastName = model.LastName;
                 currUser.Email = model.Email;
-                currUser.PhoneNumber = model.PhoneNumber;
-                currUser.Address = model.Address;
+                currUser.MobilePhone = model.MobilePhone;
+                currUser.WorkPhone = model.WorkPhone;
+                currUser.HomePhone = model.HomePhone;
+                currUser.Address1 = model.Address1;
+                currUser.Address2 = model.Address2;
                 currUser.City = model.City;
                 currUser.Suburb = model.Suburb;
                 currUser.PostCode = model.PostalCode;
                 currUser.Community = model.Community;                
+                currUser.IsPhonePublic = model.IsPhonePublic;
+                currUser.IsAddressPublic = model.IsAddressPublic;
+                currUser.IsEmailPublic = model.IsEmailPublic;
                 
                 DI.CurrentRepositoryFactory.CreateUserRepository().Insert(currUser);
 

@@ -12,11 +12,17 @@ namespace TimebanksNZ.DAL.Entities
         string Email { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
-        string PhoneNumber { get; set; }
+        string Community { get; set; }
         string City { get; set; }
         string Suburb { get; set; }
-        string PostCode { get; set; }
-        string Address { get; set; }
-        string Community { get; set; }
+        string PostalCode { get; set; }
+        string Address1 { get; set; }
+        string Address2 { get; set; }
+        string MobilePhone { get; set; }
+        string HomePhone { get; set; }
+        string WorkPhone { get; set; }
+        bool IsPhonePublic { get; set; }
+        bool IsAddressPublic { get; set; }
+        bool IsEmailPublic { get; set; }
     }
 }
