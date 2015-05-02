@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using Timebanks.NZ.DAL.MySql.AutoMapper.Profiles;
 
-namespace Timebanks.NZ.DAL.MySql
+namespace Timebanks.NZ.DAL.MySql.AutoMapper
 {
     public static class AutomapperMySqlConfiguration
     {
