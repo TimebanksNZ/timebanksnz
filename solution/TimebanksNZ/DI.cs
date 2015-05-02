@@ -35,7 +35,7 @@ namespace TimebanksNZ
                 _repositoryFactory = value;
             }
         }
-        public static IRepositoryFactory CurrentRepositoryFactory { get; set; }
+        public static IRepositoryFactory CurrentRepositoryFactory { get { return RepositoryFactory; } }
     }
 
     // Example of how to use
