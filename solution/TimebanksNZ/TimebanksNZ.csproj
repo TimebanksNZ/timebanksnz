@@ -161,13 +161,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DI.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IRepositoryFactory.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryFactory.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +239,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TImebanksNZ.DAL.Mock\TImebanksNZ.DAL.Mock.csproj">
+      <Project>{60a9ce91-b9c0-455b-8e82-5038d05a2a89}</Project>
+      <Name>TImebanksNZ.DAL.Mock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TimebanksNZ.DAL\TimebanksNZ.DAL.csproj">
+      <Project>{8025838e-a7ea-4ce6-afb4-fa13de56f127}</Project>
+      <Name>TimebanksNZ.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
