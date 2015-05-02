@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TImebanksNZ.DAL.Mock;
 
 namespace TimebanksNZ.Controllers
 {
@@ -23,7 +24,7 @@ namespace TimebanksNZ.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+                        
             return View();
         }
     }
