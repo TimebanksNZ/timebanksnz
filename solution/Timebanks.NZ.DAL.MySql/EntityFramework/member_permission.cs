@@ -17,5 +17,8 @@ namespace Timebanks.NZ.DAL.MySql.EntityFramework
         public int id_member_permission { get; set; }
         public System.Guid id_member { get; set; }
         public int id_permission { get; set; }
+    
+        public virtual member member { get; set; }
+        public virtual permission permission { get; set; }
     }
 }

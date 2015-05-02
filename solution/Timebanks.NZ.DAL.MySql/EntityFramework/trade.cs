@@ -20,5 +20,8 @@ namespace Timebanks.NZ.DAL.MySql.EntityFramework
         public int id_need_want { get; set; }
         public System.DateTime date { get; set; }
         public string description { get; set; }
+    
+        public virtual member member { get; set; }
+        public virtual member member1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="timebanksModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="timebanksModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="category">
           <Key>
             <PropertyRef Name="id_category" />
@@ -43,10 +43,10 @@
           <Property Name="home_phone" Type="varchar" MaxLength="20" />
           <Property Name="work_phone" Type="varchar" MaxLength="20" />
           <Property Name="created" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="geo_lat" Type="double" Nullable="false" />
-          <Property Name="geo_long" Type="double" Nullable="false" />
-          <Property Name="phone_privacy" Type="bool" Nullable="false" />
+          <Property Name="geo_lat" Type="double" />
+          <Property Name="geo_long" Type="double" />
           <Property Name="email_address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="is_phone_public" Type="bool" Nullable="false" />
           <Property Name="is_address_public" Type="bool" Nullable="false" />
           <Property Name="is_email_validated" Type="bool" Nullable="false" />
           <Property Name="is_email_public" Type="bool" Nullable="false" />
@@ -101,11 +101,11 @@
           <Property Name="url" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="geo_long" Type="double" />
           <Property Name="geo_lat" Type="double" />
-          <Property Name="Address_1" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Address_2" Type="varchar" MaxLength="100" />
+          <Property Name="address_1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address_2" Type="varchar" MaxLength="100" />
           <Property Name="suburb" Type="varchar" MaxLength="100" />
           <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Postcode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="postcode" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="is_member_timebanknz" Type="bit" />
           <Property Name="id_country" Type="int" />
           <Property Name="id_theme" Type="int" />
@@ -159,6 +159,30 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="permission_member_fk">
+          <End Role="member" Type="Self.member" Multiplicity="1" />
+          <End Role="member_permission" Type="Self.member_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="member_permission">
+              <PropertyRef Name="id_member" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="permission_permission_fk">
+          <End Role="permission" Type="Self.permission" Multiplicity="1" />
+          <End Role="member_permission" Type="Self.member_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permission">
+              <PropertyRef Name="id_permission" />
+            </Principal>
+            <Dependent Role="member_permission">
+              <PropertyRef Name="id_permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="tag_member_fk">
           <End Role="member" Type="Self.member" Multiplicity="0..1" />
           <End Role="tag" Type="Self.tag" Multiplicity="*" />
@@ -180,6 +204,30 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
             </Principal>
             <Dependent Role="tag">
               <PropertyRef Name="id_offer_need" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="trade_member_payee_fk">
+          <End Role="member" Type="Self.member" Multiplicity="1" />
+          <End Role="trade" Type="Self.trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="trade">
+              <PropertyRef Name="id_payer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="trade_member_payer_fk">
+          <End Role="member" Type="Self.member" Multiplicity="1" />
+          <End Role="trade" Type="Self.trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="trade">
+              <PropertyRef Name="id_payer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -205,6 +253,14 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
             <End Role="timebank" EntitySet="timebank" />
             <End Role="offer_need" EntitySet="offer_need" />
           </AssociationSet>
+          <AssociationSet Name="permission_member_fk" Association="Self.permission_member_fk">
+            <End Role="member" EntitySet="member" />
+            <End Role="member_permission" EntitySet="member_permission" />
+          </AssociationSet>
+          <AssociationSet Name="permission_permission_fk" Association="Self.permission_permission_fk">
+            <End Role="permission" EntitySet="permission" />
+            <End Role="member_permission" EntitySet="member_permission" />
+          </AssociationSet>
           <AssociationSet Name="tag_member_fk" Association="Self.tag_member_fk">
             <End Role="member" EntitySet="member" />
             <End Role="tag" EntitySet="tag" />
@@ -213,9 +269,16 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
             <End Role="offer_need" EntitySet="offer_need" />
             <End Role="tag" EntitySet="tag" />
           </AssociationSet>
+          <AssociationSet Name="trade_member_payee_fk" Association="Self.trade_member_payee_fk">
+            <End Role="member" EntitySet="member" />
+            <End Role="trade" EntitySet="trade" />
+          </AssociationSet>
+          <AssociationSet Name="trade_member_payer_fk" Association="Self.trade_member_payer_fk">
+            <End Role="member" EntitySet="member" />
+            <End Role="trade" EntitySet="trade" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="timebanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -259,7 +322,6 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="geo_lat" Type="Double" Nullable="false" />
           <Property Name="geo_long" Type="Double" Nullable="false" />
-          <Property Name="phone_privacy" Type="Boolean" Nullable="false" />
           <Property Name="email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="is_address_public" Type="Boolean" Nullable="false" />
           <Property Name="is_email_validated" Type="Boolean" Nullable="false" />
@@ -268,6 +330,10 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <NavigationProperty Name="timebank" Relationship="Self.member_timebank_fk" FromRole="member" ToRole="timebank" />
           <NavigationProperty Name="offer_need" Relationship="Self.offer_need_member_fk" FromRole="member" ToRole="offer_need" />
           <NavigationProperty Name="tags" Relationship="Self.tag_member_fk" FromRole="member" ToRole="tag" />
+          <Property Name="is_phone_public" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="member_permission" Relationship="timebanksModel.permission_member_fk" FromRole="member" ToRole="member_permission" />
+          <NavigationProperty Name="trades" Relationship="timebanksModel.trade_member_payee_fk" FromRole="member" ToRole="trade" />
+          <NavigationProperty Name="trades1" Relationship="timebanksModel.trade_member_payer_fk" FromRole="member" ToRole="trade" />
         </EntityType>
         <EntityType Name="member_permission">
           <Key>
@@ -276,6 +342,8 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <Property Name="id_member_permission" Type="Int32" Nullable="false" />
           <Property Name="id_member" Type="Guid" Nullable="false" />
           <Property Name="id_permission" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="member" Relationship="timebanksModel.permission_member_fk" FromRole="member_permission" ToRole="member" />
+          <NavigationProperty Name="permission" Relationship="timebanksModel.permission_permission_fk" FromRole="member_permission" ToRole="permission" />
         </EntityType>
         <EntityType Name="offer_need">
           <Key>
@@ -302,6 +370,7 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <Property Name="id_permission" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="created" Type="DateTime" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="member_permission" Relationship="timebanksModel.permission_permission_fk" FromRole="permission" ToRole="member_permission" />
         </EntityType>
         <EntityType Name="tag">
           <Key>
@@ -323,16 +392,16 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="geo_long" Type="Double" />
           <Property Name="geo_lat" Type="Double" />
-          <Property Name="Address_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="suburb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Postcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="is_member_timebanknz" Type="Boolean" />
           <Property Name="id_country" Type="Int32" />
           <Property Name="id_theme" Type="Int32" />
           <NavigationProperty Name="members" Relationship="Self.member_timebank_fk" FromRole="timebank" ToRole="member" />
           <NavigationProperty Name="offer_need" Relationship="Self.offer_need_timebank_fk" FromRole="timebank" ToRole="offer_need" />
+          <Property Name="address_1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="trade">
           <Key>
@@ -344,6 +413,8 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <Property Name="id_need_want" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="member" Relationship="timebanksModel.trade_member_payee_fk" FromRole="trade" ToRole="member" />
+          <NavigationProperty Name="member1" Relationship="timebanksModel.trade_member_payer_fk" FromRole="trade" ToRole="member" />
         </EntityType>
         <Association Name="member_timebank_fk">
           <End Role="timebank" Type="Self.timebank" Multiplicity="1" />
@@ -435,7 +506,71 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
             <End Role="offer_need" EntitySet="offer_need" />
             <End Role="tag" EntitySet="tags" />
           </AssociationSet>
+          <AssociationSet Name="permission_member_fk" Association="timebanksModel.permission_member_fk">
+            <End Role="member" EntitySet="members" />
+            <End Role="member_permission" EntitySet="member_permission" />
+          </AssociationSet>
+          <AssociationSet Name="trade_member_payee_fk" Association="timebanksModel.trade_member_payee_fk">
+            <End Role="member" EntitySet="members" />
+            <End Role="trade" EntitySet="trades" />
+          </AssociationSet>
+          <AssociationSet Name="trade_member_payer_fk" Association="timebanksModel.trade_member_payer_fk">
+            <End Role="member" EntitySet="members" />
+            <End Role="trade" EntitySet="trades" />
+          </AssociationSet>
+          <AssociationSet Name="permission_permission_fk" Association="timebanksModel.permission_permission_fk">
+            <End Role="permission" EntitySet="permissions" />
+            <End Role="member_permission" EntitySet="member_permission" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="permission_member_fk">
+          <End Type="timebanksModel.member" Role="member" Multiplicity="1" />
+          <End Type="timebanksModel.member_permission" Role="member_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="member_permission">
+              <PropertyRef Name="id_member" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="trade_member_payee_fk">
+          <End Type="timebanksModel.member" Role="member" Multiplicity="1" />
+          <End Type="timebanksModel.trade" Role="trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="trade">
+              <PropertyRef Name="id_payer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="trade_member_payer_fk">
+          <End Type="timebanksModel.member" Role="member" Multiplicity="1" />
+          <End Type="timebanksModel.trade" Role="trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="trade">
+              <PropertyRef Name="id_payer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="permission_permission_fk">
+          <End Type="timebanksModel.permission" Role="permission" Multiplicity="1" />
+          <End Type="timebanksModel.member_permission" Role="member_permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permission">
+              <PropertyRef Name="id_permission" />
+            </Principal>
+            <Dependent Role="member_permission">
+              <PropertyRef Name="id_permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -467,6 +602,7 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <EntitySetMapping Name="members">
             <EntityTypeMapping TypeName="timebanksModel.member">
               <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="is_phone_public" ColumnName="is_phone_public" />
                 <ScalarProperty Name="id_member" ColumnName="id_member" />
                 <ScalarProperty Name="id_timebank" ColumnName="id_timebank" />
                 <ScalarProperty Name="approved" ColumnName="approved" />
@@ -483,7 +619,6 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
                 <ScalarProperty Name="created" ColumnName="created" />
                 <ScalarProperty Name="geo_lat" ColumnName="geo_lat" />
                 <ScalarProperty Name="geo_long" ColumnName="geo_long" />
-                <ScalarProperty Name="phone_privacy" ColumnName="phone_privacy" />
                 <ScalarProperty Name="email_address" ColumnName="email_address" />
                 <ScalarProperty Name="is_address_public" ColumnName="is_address_public" />
                 <ScalarProperty Name="is_email_validated" ColumnName="is_email_validated" />
@@ -539,16 +674,16 @@ warning 6005: The data type 'udecimal' is currently not supported for the target
           <EntitySetMapping Name="timebanks">
             <EntityTypeMapping TypeName="timebanksModel.timebank">
               <MappingFragment StoreEntitySet="timebank">
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="address_2" ColumnName="address_2" />
+                <ScalarProperty Name="address_1" ColumnName="address_1" />
                 <ScalarProperty Name="id_timebank" ColumnName="id_timebank" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="geo_long" ColumnName="geo_long" />
                 <ScalarProperty Name="geo_lat" ColumnName="geo_lat" />
-                <ScalarProperty Name="Address_1" ColumnName="Address_1" />
-                <ScalarProperty Name="Address_2" ColumnName="Address_2" />
                 <ScalarProperty Name="suburb" ColumnName="suburb" />
                 <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
                 <ScalarProperty Name="is_member_timebanknz" ColumnName="is_member_timebanknz" />
                 <ScalarProperty Name="id_country" ColumnName="id_country" />
                 <ScalarProperty Name="id_theme" ColumnName="id_theme" />

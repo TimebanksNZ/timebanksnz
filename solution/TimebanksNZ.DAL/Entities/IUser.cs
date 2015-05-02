@@ -8,14 +8,14 @@ namespace TimebanksNZ.DAL.Entities
 {
     public interface IUser
     {
-        Guid Id { get; set; }
+        Guid IdMember { get; set; }
         string Email { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         string PhoneNumber { get; set; }
         string City { get; set; }
         string Suburb { get; set; }
-        string PostalCode { get; set; }
+        string PostCode { get; set; }
         string Address { get; set; }
         string Community { get; set; }
     }

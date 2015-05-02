@@ -18,10 +18,14 @@ namespace Timebanks.NZ.DAL.MySql
 
         public void Insert(User entity)
         {
+            var dbContext = new timebanksEntities();
+
             EntityTranslator entityTranslator = new EntityTranslator();
 
             member poco = entityTranslator.Translate(entity);
 
+            dbContext.members.Add(poco);
+            dbContext.SaveChanges();
         }
 
         public User Get(User entity)
@@ -32,20 +36,6 @@ namespace Timebanks.NZ.DAL.MySql
         public void Delete(User entity)
         {
             throw new NotImplementedException();
-        }
-    }
-
-    public class EntityTranslator
-    {
-        public member Translate(User entity)
-        {
-            member member = new member();
-
-            member.first_name = entity.FirstName;
-            member.last_name = entity.LastName;
-            member.approved = entity.Approved;
-
-            return member;
         }
     }
 }
