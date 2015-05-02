@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `timebanks` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `timebanks`;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: timebanks
@@ -25,12 +23,13 @@ DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
-  `id_category` int(11) NOT NULL,
-  `is_parent` bit(1) NOT NULL DEFAULT b'0',
+  `id_category` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `dateadded` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `parent_id` int(11) DEFAULT '0',
+  PRIMARY KEY (`id_category`),
+  UNIQUE KEY `id_category_UNIQUE` (`id_category`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +38,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Transporation','2015-05-02 14:01:43',0),(2,'Help At Home','2015-05-02 14:01:43',0),(3,'Companionship','2015-05-02 14:01:43',0),(4,'Community Activities','2015-05-02 14:01:43',0),(5,'Wellness','2015-05-02 14:01:43',0),(6,'Recreation','2015-05-02 14:01:43',0),(7,'Education','2015-05-02 14:01:43',0),(8,'Arts, Crafts & Music','2015-05-02 14:01:43',0),(9,'Home','2015-05-02 14:01:43',0),(10,'Business Services','2015-05-02 14:01:43',0),(11,'Misc','2015-05-02 14:01:43',0),(12,'Transporation','2015-05-02 14:04:26',0),(13,'Help At Home','2015-05-02 14:04:26',0),(14,'Companionship','2015-05-02 14:04:26',0),(15,'Community Activities','2015-05-02 14:04:26',0),(16,'Wellness','2015-05-02 14:04:26',0),(17,'Recreation','2015-05-02 14:04:26',0),(18,'Education','2015-05-02 14:04:26',0),(19,'Arts, Crafts & Music','2015-05-02 14:04:26',0),(20,'Home','2015-05-02 14:04:26',0),(21,'Business Services','2015-05-02 14:04:26',0),(22,'Misc','2015-05-02 14:04:26',0),(23,'Errands / Shopping','2015-05-02 14:04:26',1),(24,'Local','2015-05-02 14:04:26',1),(25,'Long Distance','2015-05-02 14:04:26',1),(26,'Medical','2015-05-02 14:04:26',1),(27,'Train / Bus / Airport','2015-05-02 14:04:26',1),(28,'Worship','2015-05-02 14:04:26',1),(29,'Miscellaneous','2015-05-02 14:04:26',1),(30,'Child Care','2015-05-02 14:04:26',2),(31,'Cooking & Sewing','2015-05-02 14:04:26',2),(32,'Hair & Beauty','2015-05-02 14:04:26',2),(33,'Housekeeping / Chores','2015-05-02 14:04:26',2),(34,'Pet Care','2015-05-02 14:04:26',2),(35,'Respite Care','2015-05-02 14:04:26',2),(36,'Miscellaneous','2015-05-02 14:04:26',2);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,10 +53,12 @@ CREATE TABLE `country` (
   `id_country` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `abbreviation` varchar(3) DEFAULT NULL,
-  `date_added` datetime DEFAULT CURRENT_TIMESTAMP,
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `geo_long` double NOT NULL DEFAULT '0',
+  `geo_lat` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_country`),
   UNIQUE KEY `id_country_UNIQUE` (`id_country`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +67,7 @@ CREATE TABLE `country` (
 
 LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES (1,'New Zealand','NZL','2015-05-02 14:09:11',172.6362,-43.5321);
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +167,7 @@ CREATE TABLE `timebanks` (
   UNIQUE KEY `id_timebank_UNIQUE` (`id_timebank`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `url_UNIQUE` (`url`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Timebanks of NZ.  ';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Timebanks of NZ.  ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,6 +176,7 @@ CREATE TABLE `timebanks` (
 
 LOCK TABLES `timebanks` WRITE;
 /*!40000 ALTER TABLE `timebanks` DISABLE KEYS */;
+INSERT INTO `timebanks` VALUES (1,'Addington','www.addington.timebanks.nz',172.6362,-43.5321,'21 Church Square','','Addington','Christchurch','8024','',1,1),(2,'Lyttleton','http://www.lyttelton.timebanks.org/',172.722783,-43.602495,'54a Oxford Street','','Lyttelton','Christchurch','8082','',1,1);
 /*!40000 ALTER TABLE `timebanks` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -185,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-02 12:51:02
+-- Dump completed on 2015-05-02 14:12:20
