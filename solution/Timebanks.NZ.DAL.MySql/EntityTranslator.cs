@@ -27,14 +27,36 @@ namespace Timebanks.NZ.DAL.MySql
             member.geo_long = entity.GeoLong;
             member.timebank = Translate(entity.TimeBank);
             member.email_address = entity.Email;
+            member.is_email_validated = entity.IsEmailValidated;
+            member.is_email_public = entity.IsEmailPublic;
+            member.is_address_public = entity.IsAddressPublic;
+            member.is_deleted = entity.IsDeleted;
+            member.is_phone_public = entity.IsPhonePublic;
             
             return member;
         }
 
-        private timebank Translate(Timebank timeBank)
+        public timebank Translate(Timebank source)
         {
-            // TODO NJ: Translate this
-            return new timebank();
+            var tb = new timebank()
+            {
+                id_timebank = source.IdTimebank,
+                name = source.Name,
+                url = source.Url,
+                geo_lat = source.GeoLat,
+                geo_long = source.GeoLong,
+                suburb = source.Suburb,
+                city = source.City,
+                is_member_timebanknz = source.IsMemberTimebankNZ,
+                id_country = source.IdCountry,
+                id_theme = source.IdTheme,
+                address_1 = source.Address1,
+                address_2 = source.Address2,
+                postcode = source.Postcode
+            };
+
+            return tb;
         }
+
     }
 }

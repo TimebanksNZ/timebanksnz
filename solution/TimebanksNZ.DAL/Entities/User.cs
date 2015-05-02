@@ -30,5 +30,7 @@ namespace TimebanksNZ.DAL.Entities
         public double GeoLat { get; set; }
         public double GeoLong { get; set; }
         public Timebank TimeBank { get; set; }
+        public bool IsEmailValidated { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
