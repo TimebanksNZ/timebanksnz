@@ -7,7 +7,7 @@ namespace TimebanksNZ
     {
         public IRepository<User> CreateUserRepository()
         {            
-            return new MockRepository<User>();
+            return new UserRepository<User>();
         }
     }
 }
