@@ -1,5 +1,5 @@
 # timebanksnz
-Timebanking software for Jem
+Timebanking software for Gen
 
 Started from Charity-IT (http://www.charity-it.org) event Christchurch 1st May 2015
 
