@@ -5,7 +5,7 @@ using Timebanks.NZ.DAL.MySql.EntityFramework;
 namespace TimebanksNZ.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class UserRepositoryTests
     {
         [TestMethod]
         public void TestMethod1()
@@ -16,7 +16,6 @@ namespace TimebanksNZ.Tests
             {
                 name = "",
             };
-
 
             t.timebanks.Add(tb);
             t.SaveChanges();

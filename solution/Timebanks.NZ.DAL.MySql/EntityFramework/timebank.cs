@@ -25,14 +25,14 @@ namespace Timebanks.NZ.DAL.MySql.EntityFramework
         public string url { get; set; }
         public Nullable<double> geo_long { get; set; }
         public Nullable<double> geo_lat { get; set; }
-        public string Address_1 { get; set; }
-        public string Address_2 { get; set; }
         public string suburb { get; set; }
         public string city { get; set; }
-        public string Postcode { get; set; }
         public Nullable<bool> is_member_timebanknz { get; set; }
         public Nullable<int> id_country { get; set; }
         public Nullable<int> id_theme { get; set; }
+        public string address_1 { get; set; }
+        public string address_2 { get; set; }
+        public string postcode { get; set; }
     
         public virtual ICollection<member> members { get; set; }
         public virtual ICollection<offer_need> offer_need { get; set; }

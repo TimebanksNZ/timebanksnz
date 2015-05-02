@@ -14,8 +14,15 @@ namespace Timebanks.NZ.DAL.MySql.EntityFramework
     
     public partial class permission
     {
+        public permission()
+        {
+            this.member_permission = new HashSet<member_permission>();
+        }
+    
         public int id_permission { get; set; }
         public System.DateTime created { get; set; }
         public string name { get; set; }
+    
+        public virtual ICollection<member_permission> member_permission { get; set; }
     }
 }

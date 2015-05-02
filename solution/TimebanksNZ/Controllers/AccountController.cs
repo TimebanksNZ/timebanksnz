@@ -173,7 +173,7 @@ namespace TimebanksNZ.Controllers
                 currUser.Address = model.Address;
                 currUser.City = model.City;
                 currUser.Suburb = model.Suburb;
-                currUser.PostalCode = model.PostalCode;
+                currUser.PostCode = model.PostalCode;
                 currUser.Community = model.Community;                
                 
                 DI.CurrentRepositoryFactory.CreateUserRepository().Insert(currUser);
@@ -186,9 +186,9 @@ namespace TimebanksNZ.Controllers
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.IdMember);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.IdMember, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.IdMember, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -238,9 +238,9 @@ namespace TimebanksNZ.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.IdMember);
+                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.IdMember, code = code }, protocol: Request.Url.Scheme);		
+                // await UserManager.SendEmailAsync(user.IdMember, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
