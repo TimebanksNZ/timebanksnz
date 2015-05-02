@@ -181,7 +181,8 @@ namespace TimebanksNZ.Controllers
                 currUser.IsPhonePublic = model.IsPhonePublic;
                 currUser.IsAddressPublic = model.IsAddressPublic;
                 currUser.IsEmailPublic = model.IsEmailPublic;
-                
+
+                var timebanks = DI.CurrentRepositoryFactory.CreateTimebankRepository().GetAll();
                 DI.CurrentRepositoryFactory.CreateUserRepository().Insert(currUser);
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
