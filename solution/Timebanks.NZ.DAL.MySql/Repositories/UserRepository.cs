@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity.Validation;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using Timebanks.NZ.DAL.MySql.EntityFramework;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 
-namespace Timebanks.NZ.DAL.MySql
+namespace Timebanks.NZ.DAL.MySql.Repositories
 {
+   
     public class UserRepository : IRepository<User>
     {        
         public void Update(User entity)
@@ -28,6 +26,7 @@ namespace Timebanks.NZ.DAL.MySql
             entity.IdMember = Guid.NewGuid();
             var poco = Mapper.Map<member>(entity);
             dbContext.members.Add(poco);
+
             try
             {
                 dbContext.SaveChanges();
@@ -59,39 +58,6 @@ namespace Timebanks.NZ.DAL.MySql
         }
 
         public void Delete(User entity)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class TimebankRepository : IRepository<Timebank>
-    {
-        public void Update(Timebank entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(Timebank entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Timebank Get(Timebank entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Timebank> GetAll()
-        {
-            var dbContext = new timebanksEntities();
-
-            EntityTranslator entityTranslator = new EntityTranslator();
-
-            List<Timebank> timebanks = entityTranslator.Translate(dbContext.timebanks);
-
-            return timebanks;
-        }
-        public void Delete(Timebank entity)
         {
             throw new NotImplementedException();
         }

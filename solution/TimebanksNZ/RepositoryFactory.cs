@@ -1,4 +1,5 @@
-﻿using TimebanksNZ.DAL;
+﻿using Timebanks.NZ.DAL.MySql.Repositories;
+using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 
 
@@ -8,7 +9,7 @@ namespace TimebanksNZ
     {
         public IRepository<User> CreateUserRepository()
         {
-            return new Timebanks.NZ.DAL.MySql.UserRepository();
+            return new UserRepository();
         }
     }
 }
