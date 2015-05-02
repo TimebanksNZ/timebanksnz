@@ -241,6 +241,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Timebanks.NZ.DAL.MySql\TimebanksNZ.DAL.MySql.csproj">
+      <Project>{6fb80237-ec54-4f8f-8a83-7e0af6690dbf}</Project>
+      <Name>TimebanksNZ.DAL.MySql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TImebanksNZ.DAL.Mock\TImebanksNZ.DAL.Mock.csproj">
       <Project>{60a9ce91-b9c0-455b-8e82-5038d05a2a89}</Project>
       <Name>TImebanksNZ.DAL.Mock</Name>

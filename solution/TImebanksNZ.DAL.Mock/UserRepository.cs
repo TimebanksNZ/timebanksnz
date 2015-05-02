@@ -8,7 +8,7 @@ using TimebanksNZ.DAL.Entities;
 
 namespace TImebanksNZ.DAL.Mock
 {
-    public class UserRepository<T>: IRepository<User>
+    public class UserRepository: IRepository<User>
     {
         public void Update(User entity)
         {           

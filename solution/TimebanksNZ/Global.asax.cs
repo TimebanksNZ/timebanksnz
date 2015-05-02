@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Timebanks.NZ.DAL.MySql;
 
 namespace TimebanksNZ
 {
@@ -16,6 +17,8 @@ namespace TimebanksNZ
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            // TODO NJ: Find a better way to do this once IoC in place
+            AutomapperMySqlConfiguration.Configure();
         }
     }
 }
