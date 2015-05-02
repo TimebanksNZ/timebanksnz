@@ -30,8 +30,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.6\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,6 +58,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFramework\category.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\country.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\member.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\member_permission.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\offer_need.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\permission.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\tag.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\timebank.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\TimebanksNZ.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimebanksNZ.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\TimebanksNZ.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\TimebanksNZ.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\trade.cs">
+      <DependentUpon>TimebanksNZ.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -47,6 +108,30 @@
       <Project>{8025838E-A7EA-4CE6-AFB4-FA13DE56F127}</Project>
       <Name>TimebanksNZ.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EntityDeploy Include="EntityFramework\TimebanksNZ.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TimebanksNZ.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityFramework\TimebanksNZ.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+      <LastGenOutput>TimebanksNZ.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EntityFramework\TimebanksNZ.edmx.diagram">
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+    </None>
+    <None Include="EntityFramework\TimebanksNZ.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TimebanksNZ.edmx</DependentUpon>
+      <LastGenOutput>TimebanksNZ.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

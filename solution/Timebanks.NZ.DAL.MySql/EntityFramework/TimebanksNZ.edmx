@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="timebanksModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="dateadded" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="parent_id" Type="int" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id_country" />
+          </Key>
+          <Property Name="id_country" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="abbreviation" Type="varchar" MaxLength="3" />
+          <Property Name="date_added" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geo_long" Type="double" Nullable="false" />
+          <Property Name="geo_lat" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="id_member" />
+          </Key>
+          <Property Name="id_member" Type="guid" Nullable="false" />
+          <Property Name="id_timebank" Type="int" Nullable="false" />
+          <Property Name="approved" Type="bool" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="street_address_1" Type="varchar" MaxLength="100" />
+          <Property Name="street_address_2" Type="varchar" MaxLength="100" />
+          <Property Name="suburb" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="postcode" Type="varchar" MaxLength="6" />
+          <Property Name="mobile_phone" Type="varchar" MaxLength="20" />
+          <Property Name="home_phone" Type="varchar" MaxLength="20" />
+          <Property Name="work_phone" Type="varchar" MaxLength="20" />
+          <Property Name="created" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geo_lat" Type="double" Nullable="false" />
+          <Property Name="geo_long" Type="double" Nullable="false" />
+          <Property Name="phone_privacy" Type="bool" Nullable="false" />
+          <Property Name="email_address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="is_address_public" Type="bool" Nullable="false" />
+          <Property Name="is_email_validated" Type="bool" Nullable="false" />
+          <Property Name="is_email_public" Type="bool" Nullable="false" />
+          <Property Name="is_deleted" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="member_permission">
+          <Key>
+            <PropertyRef Name="id_member_permission" />
+          </Key>
+          <Property Name="id_member_permission" Type="int" Nullable="false" />
+          <Property Name="id_member" Type="guid" Nullable="false" />
+          <Property Name="id_permission" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="offer_need">
+          <Key>
+            <PropertyRef Name="id_offer_need" />
+          </Key>
+          <Property Name="id_offer_need" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="guid" Nullable="false" />
+          <Property Name="id_timebank" Type="int" Nullable="false" />
+          <Property Name="is_offer" Type="bool" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="created" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modified" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Precision="0" />
+          <Property Name="expiry_date" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_permission" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tag">
+          <Key>
+            <PropertyRef Name="id_tag" />
+          </Key>
+          <Property Name="id_tag" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_member" Type="guid" />
+          <Property Name="id_offer_need" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="timebank">
+          <Key>
+            <PropertyRef Name="id_timebank" />
+          </Key>
+          <Property Name="id_timebank" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="geo_long" Type="double" />
+          <Property Name="geo_lat" Type="double" />
+          <Property Name="Address_1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address_2" Type="varchar" MaxLength="100" />
+          <Property Name="suburb" Type="varchar" MaxLength="100" />
+          <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Postcode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="is_member_timebanknz" Type="bit" />
+          <Property Name="id_country" Type="int" />
+          <Property Name="id_theme" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'udecimal' is currently not supported for the target Entity Framework version; the column 'hours' in the table 'def.timebanks.trade' was excluded.-->
+        <EntityType Name="trade">
+          <Key>
+            <PropertyRef Name="id_trade" />
+          </Key>
+          <Property Name="id_trade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_payer" Type="guid" Nullable="false" />
+          <Property Name="id_payee" Type="guid" Nullable="false" />
+          <Property Name="id_need_want" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="text" />
+        </EntityType>
+        <Association Name="member_timebank_fk">
+          <End Role="timebank" Type="Self.timebank" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timebank">
+              <PropertyRef Name="id_timebank" />
+            </Principal>
+            <Dependent Role="member">
+              <PropertyRef Name="id_timebank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="offer_need_member_fk">
+          <End Role="member" Type="Self.member" Multiplicity="1" />
+          <End Role="offer_need" Type="Self.offer_need" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="offer_need">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="offer_need_timebank_fk">
+          <End Role="timebank" Type="Self.timebank" Multiplicity="1" />
+          <End Role="offer_need" Type="Self.offer_need" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timebank">
+              <PropertyRef Name="id_timebank" />
+            </Principal>
+            <Dependent Role="offer_need">
+              <PropertyRef Name="id_timebank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tag_member_fk">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="tag" Type="Self.tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="tag">
+              <PropertyRef Name="id_member" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tag_offer_need_fk">
+          <End Role="offer_need" Type="Self.offer_need" Multiplicity="0..1" />
+          <End Role="tag" Type="Self.tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offer_need">
+              <PropertyRef Name="id_offer_need" />
+            </Principal>
+            <Dependent Role="tag">
+              <PropertyRef Name="id_offer_need" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="timebanksModelStoreContainer">
+          <EntitySet Name="category" EntityType="Self.category" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="member" EntityType="Self.member" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="member_permission" EntityType="Self.member_permission" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="offer_need" EntityType="Self.offer_need" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="permission" EntityType="Self.permission" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="tag" EntityType="Self.tag" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="timebank" EntityType="Self.timebank" Schema="timebanks" store:Type="Tables" />
+          <EntitySet Name="trade" EntityType="Self.trade" Schema="timebanks" store:Type="Tables" />
+          <AssociationSet Name="member_timebank_fk" Association="Self.member_timebank_fk">
+            <End Role="timebank" EntitySet="timebank" />
+            <End Role="member" EntitySet="member" />
+          </AssociationSet>
+          <AssociationSet Name="offer_need_member_fk" Association="Self.offer_need_member_fk">
+            <End Role="member" EntitySet="member" />
+            <End Role="offer_need" EntitySet="offer_need" />
+          </AssociationSet>
+          <AssociationSet Name="offer_need_timebank_fk" Association="Self.offer_need_timebank_fk">
+            <End Role="timebank" EntitySet="timebank" />
+            <End Role="offer_need" EntitySet="offer_need" />
+          </AssociationSet>
+          <AssociationSet Name="tag_member_fk" Association="Self.tag_member_fk">
+            <End Role="member" EntitySet="member" />
+            <End Role="tag" EntitySet="tag" />
+          </AssociationSet>
+          <AssociationSet Name="tag_offer_need_fk" Association="Self.tag_offer_need_fk">
+            <End Role="offer_need" EntitySet="offer_need" />
+            <End Role="tag" EntitySet="tag" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="timebanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateadded" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parent_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id_country" />
+          </Key>
+          <Property Name="id_country" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="abbreviation" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="date_added" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geo_long" Type="Double" Nullable="false" />
+          <Property Name="geo_lat" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="id_member" />
+          </Key>
+          <Property Name="id_member" Type="Guid" Nullable="false" />
+          <Property Name="id_timebank" Type="Int32" Nullable="false" />
+          <Property Name="approved" Type="Boolean" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="street_address_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="street_address_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="suburb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="home_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="work_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geo_lat" Type="Double" Nullable="false" />
+          <Property Name="geo_long" Type="Double" Nullable="false" />
+          <Property Name="phone_privacy" Type="Boolean" Nullable="false" />
+          <Property Name="email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_address_public" Type="Boolean" Nullable="false" />
+          <Property Name="is_email_validated" Type="Boolean" Nullable="false" />
+          <Property Name="is_email_public" Type="Boolean" Nullable="false" />
+          <Property Name="is_deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="timebank" Relationship="Self.member_timebank_fk" FromRole="member" ToRole="timebank" />
+          <NavigationProperty Name="offer_need" Relationship="Self.offer_need_member_fk" FromRole="member" ToRole="offer_need" />
+          <NavigationProperty Name="tags" Relationship="Self.tag_member_fk" FromRole="member" ToRole="tag" />
+        </EntityType>
+        <EntityType Name="member_permission">
+          <Key>
+            <PropertyRef Name="id_member_permission" />
+          </Key>
+          <Property Name="id_member_permission" Type="Int32" Nullable="false" />
+          <Property Name="id_member" Type="Guid" Nullable="false" />
+          <Property Name="id_permission" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="offer_need">
+          <Key>
+            <PropertyRef Name="id_offer_need" />
+          </Key>
+          <Property Name="id_offer_need" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Guid" Nullable="false" />
+          <Property Name="id_timebank" Type="Int32" Nullable="false" />
+          <Property Name="is_offer" Type="Boolean" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modified" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_date" Type="DateTime" />
+          <Property Name="expiry_date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="member" Relationship="Self.offer_need_member_fk" FromRole="offer_need" ToRole="member" />
+          <NavigationProperty Name="timebank" Relationship="Self.offer_need_timebank_fk" FromRole="offer_need" ToRole="timebank" />
+          <NavigationProperty Name="tags" Relationship="Self.tag_offer_need_fk" FromRole="offer_need" ToRole="tag" />
+        </EntityType>
+        <EntityType Name="permission">
+          <Key>
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_permission" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="DateTime" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tag">
+          <Key>
+            <PropertyRef Name="id_tag" />
+          </Key>
+          <Property Name="id_tag" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_member" Type="Guid" />
+          <Property Name="id_offer_need" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="member" Relationship="Self.tag_member_fk" FromRole="tag" ToRole="member" />
+          <NavigationProperty Name="offer_need" Relationship="Self.tag_offer_need_fk" FromRole="tag" ToRole="offer_need" />
+        </EntityType>
+        <EntityType Name="timebank">
+          <Key>
+            <PropertyRef Name="id_timebank" />
+          </Key>
+          <Property Name="id_timebank" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="geo_long" Type="Double" />
+          <Property Name="geo_lat" Type="Double" />
+          <Property Name="Address_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="suburb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Postcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_member_timebanknz" Type="Boolean" />
+          <Property Name="id_country" Type="Int32" />
+          <Property Name="id_theme" Type="Int32" />
+          <NavigationProperty Name="members" Relationship="Self.member_timebank_fk" FromRole="timebank" ToRole="member" />
+          <NavigationProperty Name="offer_need" Relationship="Self.offer_need_timebank_fk" FromRole="timebank" ToRole="offer_need" />
+        </EntityType>
+        <EntityType Name="trade">
+          <Key>
+            <PropertyRef Name="id_trade" />
+          </Key>
+          <Property Name="id_trade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_payer" Type="Guid" Nullable="false" />
+          <Property Name="id_payee" Type="Guid" Nullable="false" />
+          <Property Name="id_need_want" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="member_timebank_fk">
+          <End Role="timebank" Type="Self.timebank" Multiplicity="1" />
+          <End Role="member" Type="Self.member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timebank">
+              <PropertyRef Name="id_timebank" />
+            </Principal>
+            <Dependent Role="member">
+              <PropertyRef Name="id_timebank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="offer_need_member_fk">
+          <End Role="member" Type="Self.member" Multiplicity="1" />
+          <End Role="offer_need" Type="Self.offer_need" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="offer_need">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tag_member_fk">
+          <End Role="member" Type="Self.member" Multiplicity="0..1" />
+          <End Role="tag" Type="Self.tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="member">
+              <PropertyRef Name="id_member" />
+            </Principal>
+            <Dependent Role="tag">
+              <PropertyRef Name="id_member" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="offer_need_timebank_fk">
+          <End Role="timebank" Type="Self.timebank" Multiplicity="1" />
+          <End Role="offer_need" Type="Self.offer_need" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timebank">
+              <PropertyRef Name="id_timebank" />
+            </Principal>
+            <Dependent Role="offer_need">
+              <PropertyRef Name="id_timebank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tag_offer_need_fk">
+          <End Role="offer_need" Type="Self.offer_need" Multiplicity="0..1" />
+          <End Role="tag" Type="Self.tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offer_need">
+              <PropertyRef Name="id_offer_need" />
+            </Principal>
+            <Dependent Role="tag">
+              <PropertyRef Name="id_offer_need" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="timebanksEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="members" EntityType="Self.member" />
+          <EntitySet Name="member_permission" EntityType="Self.member_permission" />
+          <EntitySet Name="offer_need" EntityType="Self.offer_need" />
+          <EntitySet Name="permissions" EntityType="Self.permission" />
+          <EntitySet Name="tags" EntityType="Self.tag" />
+          <EntitySet Name="timebanks" EntityType="Self.timebank" />
+          <EntitySet Name="trades" EntityType="Self.trade" />
+          <AssociationSet Name="member_timebank_fk" Association="Self.member_timebank_fk">
+            <End Role="timebank" EntitySet="timebanks" />
+            <End Role="member" EntitySet="members" />
+          </AssociationSet>
+          <AssociationSet Name="offer_need_member_fk" Association="Self.offer_need_member_fk">
+            <End Role="member" EntitySet="members" />
+            <End Role="offer_need" EntitySet="offer_need" />
+          </AssociationSet>
+          <AssociationSet Name="tag_member_fk" Association="Self.tag_member_fk">
+            <End Role="member" EntitySet="members" />
+            <End Role="tag" EntitySet="tags" />
+          </AssociationSet>
+          <AssociationSet Name="offer_need_timebank_fk" Association="Self.offer_need_timebank_fk">
+            <End Role="timebank" EntitySet="timebanks" />
+            <End Role="offer_need" EntitySet="offer_need" />
+          </AssociationSet>
+          <AssociationSet Name="tag_offer_need_fk" Association="Self.tag_offer_need_fk">
+            <End Role="offer_need" EntitySet="offer_need" />
+            <End Role="tag" EntitySet="tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="timebanksModelStoreContainer" CdmEntityContainer="timebanksEntities">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="timebanksModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dateadded" ColumnName="dateadded" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="timebanksModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="id_country" ColumnName="id_country" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
+                <ScalarProperty Name="date_added" ColumnName="date_added" />
+                <ScalarProperty Name="geo_long" ColumnName="geo_long" />
+                <ScalarProperty Name="geo_lat" ColumnName="geo_lat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="members">
+            <EntityTypeMapping TypeName="timebanksModel.member">
+              <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="id_member" ColumnName="id_member" />
+                <ScalarProperty Name="id_timebank" ColumnName="id_timebank" />
+                <ScalarProperty Name="approved" ColumnName="approved" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="street_address_1" ColumnName="street_address_1" />
+                <ScalarProperty Name="street_address_2" ColumnName="street_address_2" />
+                <ScalarProperty Name="suburb" ColumnName="suburb" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+                <ScalarProperty Name="home_phone" ColumnName="home_phone" />
+                <ScalarProperty Name="work_phone" ColumnName="work_phone" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="geo_lat" ColumnName="geo_lat" />
+                <ScalarProperty Name="geo_long" ColumnName="geo_long" />
+                <ScalarProperty Name="phone_privacy" ColumnName="phone_privacy" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="is_address_public" ColumnName="is_address_public" />
+                <ScalarProperty Name="is_email_validated" ColumnName="is_email_validated" />
+                <ScalarProperty Name="is_email_public" ColumnName="is_email_public" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="member_permission">
+            <EntityTypeMapping TypeName="timebanksModel.member_permission">
+              <MappingFragment StoreEntitySet="member_permission">
+                <ScalarProperty Name="id_member_permission" ColumnName="id_member_permission" />
+                <ScalarProperty Name="id_member" ColumnName="id_member" />
+                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offer_need">
+            <EntityTypeMapping TypeName="timebanksModel.offer_need">
+              <MappingFragment StoreEntitySet="offer_need">
+                <ScalarProperty Name="id_offer_need" ColumnName="id_offer_need" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_timebank" ColumnName="id_timebank" />
+                <ScalarProperty Name="is_offer" ColumnName="is_offer" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="expiry_date" ColumnName="expiry_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permissions">
+            <EntityTypeMapping TypeName="timebanksModel.permission">
+              <MappingFragment StoreEntitySet="permission">
+                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tags">
+            <EntityTypeMapping TypeName="timebanksModel.tag">
+              <MappingFragment StoreEntitySet="tag">
+                <ScalarProperty Name="id_tag" ColumnName="id_tag" />
+                <ScalarProperty Name="id_member" ColumnName="id_member" />
+                <ScalarProperty Name="id_offer_need" ColumnName="id_offer_need" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timebanks">
+            <EntityTypeMapping TypeName="timebanksModel.timebank">
+              <MappingFragment StoreEntitySet="timebank">
+                <ScalarProperty Name="id_timebank" ColumnName="id_timebank" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="geo_long" ColumnName="geo_long" />
+                <ScalarProperty Name="geo_lat" ColumnName="geo_lat" />
+                <ScalarProperty Name="Address_1" ColumnName="Address_1" />
+                <ScalarProperty Name="Address_2" ColumnName="Address_2" />
+                <ScalarProperty Name="suburb" ColumnName="suburb" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="is_member_timebanknz" ColumnName="is_member_timebanknz" />
+                <ScalarProperty Name="id_country" ColumnName="id_country" />
+                <ScalarProperty Name="id_theme" ColumnName="id_theme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trades">
+            <EntityTypeMapping TypeName="timebanksModel.trade">
+              <MappingFragment StoreEntitySet="trade">
+                <ScalarProperty Name="id_trade" ColumnName="id_trade" />
+                <ScalarProperty Name="id_payer" ColumnName="id_payer" />
+                <ScalarProperty Name="id_payee" ColumnName="id_payee" />
+                <ScalarProperty Name="id_need_want" ColumnName="id_need_want" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
