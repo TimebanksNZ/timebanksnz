@@ -39,9 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MockRepository.cs" />
+    <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TimebanksNZ.DAL\TimebanksNZ.DAL.csproj">
