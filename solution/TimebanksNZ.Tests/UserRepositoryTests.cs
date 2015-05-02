@@ -7,18 +7,6 @@ namespace TimebanksNZ.Tests
     [TestClass]
     public class UserRepositoryTests
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-            var t = new Timebanks.NZ.DAL.MySql.EntityFramework.timebanksEntities();
-
-            timebank tb = new timebank()
-            {
-                name = "",
-            };
-
-            t.timebanks.Add(tb);
-            t.SaveChanges();
-        }
+    
     }
 }

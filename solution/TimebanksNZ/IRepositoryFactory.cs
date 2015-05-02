@@ -7,5 +7,6 @@ namespace TimebanksNZ
     public interface IRepositoryFactory
     {
         IRepository<User> CreateUserRepository();
+        ITimebankRepository CreateTimebankRepository();
     }
 }

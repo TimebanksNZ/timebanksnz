@@ -11,5 +11,10 @@ namespace TimebanksNZ
         {
             return new UserRepository();
         }
+
+        public ITimebankRepository CreateTimebankRepository()
+        {
+            return new TimebankRepository();
+        }
     }
 }

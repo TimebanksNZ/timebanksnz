@@ -220,11 +220,16 @@ namespace TimebanksNZ.Controllers
                 currUser.IsPhonePublic = model.IsPhonePublic;
                 currUser.IsAddressPublic = model.IsAddressPublic;
                 currUser.IsEmailPublic = model.IsEmailPublic;
+<<<<<<< HEAD
+
+                var timebanks = DI.CurrentRepositoryFactory.CreateTimebankRepository().GetAll();
+=======
                 currUser.AcceptedTerms = model.AcceptedTerms;
                 currUser.Created = DateTime.Now;
                 currUser.GeoLat = model.GeoLat;
                 currUser.GeoLong = model.GeoLong;
-
+                
+>>>>>>> 9657622e5cef1368faea92c9b7c1a25488e14ee5
                 DI.CurrentRepositoryFactory.CreateUserRepository().Insert(currUser);
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
