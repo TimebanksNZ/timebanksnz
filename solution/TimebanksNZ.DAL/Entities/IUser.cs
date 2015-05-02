@@ -24,5 +24,6 @@ namespace TimebanksNZ.DAL.Entities
         bool IsPhonePublic { get; set; }
         bool IsAddressPublic { get; set; }
         bool IsEmailPublic { get; set; }
+        bool Approved { get; set; }
     }
 }

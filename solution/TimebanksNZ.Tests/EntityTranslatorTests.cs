@@ -22,10 +22,10 @@ namespace TimebanksNZ.Tests
                 FirstName = "John",
                 LastName = "Doe",
                 Approved = true,
-                Address = "1 Street",
+                Address1 = "1 Street",
                 Suburb = "Suburb",
                 City = "City",
-                PostCode = "7601",
+                PostalCode = "7601",
                 MobilePhone = "11111",
                 HomePhone = "22222",
                 WorkPhone = "33333",
@@ -45,10 +45,10 @@ namespace TimebanksNZ.Tests
             returnMember.last_name.Should().Be(user.LastName);
             returnMember.approved.Should().Be(user.Approved);
             returnMember.id_member.Should().Be(user.IdMember);
-            returnMember.street_address_1.Should().Be(user.Address);
+            returnMember.street_address_1.Should().Be(user.Address1);
             returnMember.suburb.Should().Be(user.Suburb);
             returnMember.city.Should().Be(user.City);
-            returnMember.postcode.Should().Be(user.PostCode);
+            returnMember.postcode.Should().Be(user.PostalCode);
             returnMember.mobile_phone.Should().Be(user.MobilePhone);
             returnMember.home_phone.Should().Be(user.HomePhone);
             returnMember.work_phone.Should().Be(user.WorkPhone);
