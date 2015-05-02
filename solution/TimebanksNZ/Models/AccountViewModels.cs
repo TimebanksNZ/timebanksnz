@@ -112,6 +112,7 @@ namespace TimebanksNZ.Models
         [Display(Name = "Commmunity")]
         public string Community { get; set; }
 
+        [StringLength(6, ErrorMessage = "The {0} must be maximum {1} characters long.")]
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
 
