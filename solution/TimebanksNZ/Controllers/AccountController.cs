@@ -176,7 +176,7 @@ namespace TimebanksNZ.Controllers
                 currUser.Address2 = model.Address2;
                 currUser.City = model.City;
                 currUser.Suburb = model.Suburb;
-                currUser.PostCode = model.PostalCode;
+                currUser.PostalCode = model.PostalCode;
                 currUser.Community = model.Community;                
                 currUser.IsPhonePublic = model.IsPhonePublic;
                 currUser.IsAddressPublic = model.IsAddressPublic;
