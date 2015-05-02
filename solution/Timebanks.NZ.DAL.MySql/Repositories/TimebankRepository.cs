@@ -40,6 +40,14 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
             return timebanks;
         }
 
+        public Timebank GetByName(string community)
+        {
+            var dbContext = new timebanksEntities();
+            var timebank = dbContext.timebanks.FirstOrDefault(tb => tb.name == community);
+
+            return Mapper.Map<Timebank>(timebank);
+        }
+
         public void Delete(Timebank entity)
         {
             throw new NotImplementedException();
