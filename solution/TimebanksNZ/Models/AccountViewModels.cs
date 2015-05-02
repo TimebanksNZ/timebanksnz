@@ -65,6 +65,14 @@ namespace TimebanksNZ.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -88,8 +96,11 @@ namespace TimebanksNZ.Models
         [Display(Name = "City")]
         public string City { get; set; }
 
+        [Display(Name = "Suburb")]
+        public string Suburb { get; set; }
+
         [Display(Name = "Commmunity")]
-        public string Commmunity { get; set; }
+        public string Community { get; set; }
 
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
