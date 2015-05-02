@@ -63,7 +63,7 @@ LOCK TABLES `offer_need` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `permission`
+-- Dumping data for table `permembermission`
 --
 
 LOCK TABLES `permission` WRITE;

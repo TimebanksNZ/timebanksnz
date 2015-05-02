@@ -1,3 +1,6 @@
+DROP DATABASE  IF EXISTS `timebanks`;
+CREATE DATABASE  IF NOT EXISTS `timebanks` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `timebanks`;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: timebanks
@@ -73,8 +76,8 @@ CREATE TABLE `member` (
   `home_phone` varchar(20) DEFAULT NULL,
   `work_phone` varchar(20) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `geo_lat` double NOT NULL,
-  `geo_long` double NOT NULL,
+  `geo_lat` double DEFAULT NULL,
+  `geo_long` double DEFAULT NULL,
   `phone_privacy` tinyint(1) NOT NULL COMMENT '0 = private\n1 = public to members of same time-bank',
   `email_address` varchar(100) NOT NULL,
   `is_address_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to member of same time-bank',
@@ -221,4 +224,4 @@ CREATE TABLE `trade` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-02 15:33:45
+-- Dump completed on 2015-05-02 15:46:01
