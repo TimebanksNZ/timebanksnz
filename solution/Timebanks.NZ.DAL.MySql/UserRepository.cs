@@ -17,7 +17,7 @@ namespace Timebanks.NZ.DAL.MySql
 
         public void Insert(User entity)
         {
-            throw new NotImplementedException();
+            
         }
 
         public User Get(User entity)
