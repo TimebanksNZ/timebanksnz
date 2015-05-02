@@ -43,15 +43,33 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.HomePhone, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.HomePhone, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.MobilePhone, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.MobilePhone, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.WorkPhone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.WorkPhone, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address1, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Address1, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address2, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Address2, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -79,18 +97,60 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+        @Html.LabelFor(m => m.IsPhonePublic, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.IsPhonePublic, new { @class = "form-control", @checked = "checked" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Community, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.IsEmailPublic, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextAreaFor(m => m.TermsConditions, new { @class = "form-control" })
+            @Html.CheckBoxFor(m => m.IsEmailPublic, new { @class = "form-control", @checked = "checked" })
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.IsAddressPublic, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.IsAddressPublic, new { @class = "form-control", @checked = "checked" })
+        </div>
+    </div>
+    <div class="form-group">
+            @Html.Label("Terms of Use", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <textarea class="form-control" readonly style="height: 300px; overflow: scroll">
+                I understand that TimeBanks USA and my local Time Bank shall have neither liability nor responsibility to any person or entity with respect to loss, damage, or injury caused or alleged to be caused directly or indirectly by information contained on this web site or any other Time Bank resources.
+
+                I pledge not to reveal the contents of this site, nor any other documentation provided by my local Time Bank to non-members, especially any personal information provided.
+
+                I understand that I will receive messages from other members of my Time Bank through this web site. Notification of such messages will be sent to the email address I have registered with. I also understand that I will receive newsletters, broadcasts and alerts for my Time Bank from my Coordinator(s) through this web site, www.mailchimp.com and addington.timebank@gmail.com
+
+                I understand that the function of my local Time Bank is to facilitate the exchange of services within the community.  It is my responsibility to use the same caution I would in other circumstances to get to know a person, make reference checks, and use my instincts before engaging with another Time Bank participant - especially for babysitting, elder care, and driving. Since any agreements shall be made by and between parties involved in this transaction, TimeBanks USA and my local Time Bank will not be held responsible and will not assume any liability for claims, damages, or any other consequences which may arise from this arrangement.
+
+                I hereby agree the duty, responsibility, and liability that is inherent with Time Bank exchanges shall remain as it would be if the parties were not part of any Time Bank. I agree to leave intact the normal remedies and cause-of-action available to these parties in the event of any unforeseen circumstance. I agree to indemnify and hold harmless all parties who facilitate or participate in Time Bank exchanges.
+
+                I understand that my local Time Bank may not be incorporated or have legal status as an organization. I agree to abide by the core values, rules, and guidelines provided by TimeBank USA and my local Time Bank for proper and courteous behavior. I pledge to proceed with good intent towards being of service to others in my community and treat others in the Time Bank with the respect and kindness.
+
+                Completion of this application may not conclude the process for joining your local Time Bank.  An orientation or introduction and/or references may be necessary to finalize your membership.
+
+                Terms of service are subject to change without notice.
+
+            </textarea>
+        </div>
+        </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AcceptedTerms, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(m => m.AcceptedTerms, new { @class = "form-control" })
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

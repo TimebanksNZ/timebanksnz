@@ -87,11 +87,20 @@ namespace TimebanksNZ.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        [Display(Name = "Mobile Phone Number")]
+        public string MobilePhone { get; set; }
 
-        [Display(Name = "Address")]
-        public string Address { get; set; }
+        [Display(Name = "Work Phone Number")]
+        public string WorkPhone { get; set; }
+
+        [Display(Name = "Home Phone Number")]
+        public string HomePhone { get; set; }
+
+        [Display(Name = "Street Address")]
+        public string Address1 { get; set; }
+
+        [Display(Name = "Street Address 2")]
+        public string Address2 { get; set; }
 
         [Display(Name = "City")]
         public string City { get; set; }
@@ -106,7 +115,20 @@ namespace TimebanksNZ.Models
         public string PostalCode { get; set; }
 
         [Display(Name = "Terms and Conditions of Use")]
-        public string TermsConditions{ get; set; }
+        public string TermsConditions { get; set; }
+
+        [Display(Name = "Make phone numbers public")]
+        public bool IsPhonePublic { get; set; }
+
+        [Display(Name = "Make address public")]
+        public bool IsAddressPublic { get; set; }
+
+        [Display(Name = "Make email public")]
+        public bool IsEmailPublic { get; set; }
+
+        [Required]
+        [Display(Name = "I agree with these terms")]
+        public bool AcceptedTerms { get; set; }
     }
 
     public class ResetPasswordViewModel
