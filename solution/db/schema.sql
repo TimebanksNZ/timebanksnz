@@ -36,6 +36,21 @@ CREATE TABLE `category` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `contact_method`
+--
+
+DROP TABLE IF EXISTS `contact_method`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contact_method` (
+  `id_contact_method` int(11) NOT NULL AUTO_INCREMENT,
+  `contact_method` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_contact_method`),
+  UNIQUE KEY `contact_method_UNIQUE` (`contact_method`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='preferred contact types';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `country`
 --
 
@@ -64,6 +79,7 @@ DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `id_member` char(36) NOT NULL DEFAULT 'UUID()',
   `id_timebank` int(11) NOT NULL,
+  `id_preferred_contact_method` int(11) DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'New users must be approved by the local timebank administrator',
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -79,14 +95,16 @@ CREATE TABLE `member` (
   `geo_lat` double DEFAULT NULL,
   `geo_long` double DEFAULT NULL,
   `email_address` varchar(100) NOT NULL,
-  `is_phone_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to members of same time-bank',
-  `is_address_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to member of same time-bank',
+  `is_phone_public` tinyint(1) NOT NULL DEFAULT '0',
+  `is_address_public` tinyint(1) NOT NULL DEFAULT '0',
   `is_email_validated` tinyint(1) NOT NULL DEFAULT '0',
-  `is_email_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to members of same time-bank',
+  `is_email_public` tinyint(1) NOT NULL DEFAULT '0',
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_member`),
   UNIQUE KEY `primary_email_UNIQUE` (`email_address`),
   KEY `member_timebank_fk_idx` (`id_timebank`),
+  KEY `member_contact_method_fk_idx` (`id_preferred_contact_method`),
+  CONSTRAINT `member_contact_method_fk` FOREIGN KEY (`id_preferred_contact_method`) REFERENCES `contact_method` (`id_contact_method`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `member_timebank_fk` FOREIGN KEY (`id_timebank`) REFERENCES `timebank` (`id_timebank`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Timebank member';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -107,6 +125,25 @@ CREATE TABLE `member_permission` (
   KEY `permission_permission_fk_idx` (`id_permission`),
   CONSTRAINT `permission_member_fk` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `permission_permission_fk` FOREIGN KEY (`id_permission`) REFERENCES `permission` (`id_permission`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `member_skill`
+--
+
+DROP TABLE IF EXISTS `member_skill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `member_skill` (
+  `id_member_skill` int(11) NOT NULL AUTO_INCREMENT,
+  `id_member` char(36) NOT NULL,
+  `id_category` int(11) NOT NULL,
+  PRIMARY KEY (`id_member_skill`),
+  KEY `member_skill_member_fkey_idx` (`id_member`),
+  KEY `member_skill_category_fkey_idx` (`id_category`),
+  CONSTRAINT `member_skill_category_fkey` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `member_skill_member_fkey` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -211,7 +248,7 @@ CREATE TABLE `trade` (
   `id_payer` char(36) NOT NULL,
   `id_payee` char(36) NOT NULL,
   `id_need_want` int(11) NOT NULL,
-  `hours` decimal(7,2) unsigned NOT NULL COMMENT '99,999 hours max per transaction',
+  `hours` double unsigned NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text,
   PRIMARY KEY (`id_trade`),
@@ -230,4 +267,4 @@ CREATE TABLE `trade` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-02 15:46:01
+-- Dump completed on 2015-05-02 16:41:35
