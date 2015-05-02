@@ -153,7 +153,46 @@ namespace TimebanksNZ.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var banks = new[]{
+                new { Value = "Addington", Text = "Addington"},
+                new { Value = "Belfast", Text = "Belfast"},
+                new { Value = "Bridge2Rocks", Text = "Bridge2Rocks"},
+                new { Value = "Dunedin", Text = "Dunedin"},
+                new { Value = "East Bay", Text = "East Bay"},
+                new { Value = "Hamilton", Text = "Hamilton"},
+                new { Value = "Hokonui", Text = "Hokonui"},
+                new { Value = "Kaitaia", Text = "Kaitaia"},
+                new { Value = "Levin", Text = "Levin"},
+                new { Value = "Lyttelton", Text = "Lyttelton"},
+                new { Value = "NewBrighton", Text = "New Brighton"},
+                new { Value = "Raglan", Text = "Raglan"},
+                new { Value = "Rangitikei", Text = "Rangitikei"},
+                new { Value = "Roimata", Text = "Roimata"},
+                new { Value = "SouthernHutt", Text = "Southern Hutt"},
+                new { Value = "Sumner", Text = "Sumner"},
+                new { Value = "Taita", Text = "Taita"},
+                new { Value = "Taranaki", Text = "Taranaki"},
+                new { Value = "Tauranga", Text = "Tauranga"},
+                new { Value = "Waimakariri", Text = "Waimakariri"},
+                new { Value = "UpperHutt", Text = "Upper Hutt"},
+                new { Value = "Waihi", Text = "Waihi"},
+                new { Value = "Wairarapa", Text = "Wairarapa"},
+                new { Value = "WellingtonSouth", Text = "Wellington South"},
+                new { Value = "WestTararua", Text = "West Tararua"},
+            };
+
+            var model = new RegisterViewModel
+            {
+                bank = banks.Select(b => new SelectListItem
+                {
+                    Value = b.Value,
+                    Text = b.Text
+                }),
+                IsAddressPublic = true,
+                IsEmailPublic = true,
+                IsPhonePublic = true
+            };
+            return View(model);
         }
 
         //
@@ -181,8 +220,11 @@ namespace TimebanksNZ.Controllers
                 currUser.IsPhonePublic = model.IsPhonePublic;
                 currUser.IsAddressPublic = model.IsAddressPublic;
                 currUser.IsEmailPublic = model.IsEmailPublic;
+                currUser.AcceptedTerms = model.AcceptedTerms;
+                currUser.Created = DateTime.Now;
+                currUser.GeoLat = model.GeoLat;
+                currUser.GeoLong = model.GeoLong;
 
-                var timebanks = DI.CurrentRepositoryFactory.CreateTimebankRepository().GetAll();
                 DI.CurrentRepositoryFactory.CreateUserRepository().Insert(currUser);
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };

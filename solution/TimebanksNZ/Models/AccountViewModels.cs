@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace TimebanksNZ.Models
 {
@@ -84,7 +85,7 @@ namespace TimebanksNZ.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Mobile Phone Number")]
@@ -126,9 +127,20 @@ namespace TimebanksNZ.Models
         [Display(Name = "Make email public")]
         public bool IsEmailPublic { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Need to accept terms and conditions in order to continue.")]
         [Display(Name = "I agree with these terms")]
         public bool AcceptedTerms { get; set; }
+
+        [Required(ErrorMessage = "Please select your local time bank.")]
+        [Display(Name = "Local Time Bank")]
+        public string SelectedBank { get; set; }
+        public IEnumerable<SelectListItem> bank { get; set; }
+
+        [Display(Name = "Geo Lat")]
+        public double GeoLat { get; set; }
+
+        [Display(Name = "Geo Long")]
+        public double GeoLong { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -145,7 +157,7 @@ namespace TimebanksNZ.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
