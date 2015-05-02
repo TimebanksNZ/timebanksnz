@@ -78,8 +78,8 @@ CREATE TABLE `member` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `geo_lat` double DEFAULT NULL,
   `geo_long` double DEFAULT NULL,
-  `phone_privacy` tinyint(1) NOT NULL COMMENT '0 = private\n1 = public to members of same time-bank',
   `email_address` varchar(100) NOT NULL,
+  `is_phone_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to members of same time-bank',
   `is_address_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to member of same time-bank',
   `is_email_validated` tinyint(1) NOT NULL DEFAULT '0',
   `is_email_public` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 = private\n1 = public to members of same time-bank',
@@ -103,7 +103,10 @@ CREATE TABLE `member_permission` (
   `id_member` char(36) NOT NULL,
   `id_permission` int(11) NOT NULL,
   PRIMARY KEY (`id_member_permission`),
-  UNIQUE KEY `member_permission_uk` (`id_member`,`id_permission`)
+  UNIQUE KEY `member_permission_uk` (`id_member`,`id_permission`),
+  KEY `permission_permission_fk_idx` (`id_permission`),
+  CONSTRAINT `permission_member_fk` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `permission_permission_fk` FOREIGN KEY (`id_permission`) REFERENCES `permission` (`id_permission`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -181,11 +184,11 @@ CREATE TABLE `timebank` (
   `url` varchar(255) NOT NULL,
   `geo_long` double DEFAULT NULL,
   `geo_lat` double DEFAULT NULL,
-  `Address_1` varchar(100) NOT NULL,
-  `Address_2` varchar(100) DEFAULT NULL,
+  `address_1` varchar(100) NOT NULL,
+  `address_2` varchar(100) DEFAULT NULL,
   `suburb` varchar(100) DEFAULT NULL,
   `city` varchar(50) NOT NULL,
-  `Postcode` varchar(6) NOT NULL,
+  `postcode` varchar(6) NOT NULL,
   `is_member_timebanknz` bit(1) DEFAULT b'0',
   `id_country` int(11) DEFAULT '1',
   `id_theme` int(11) DEFAULT '1',
@@ -211,7 +214,10 @@ CREATE TABLE `trade` (
   `hours` decimal(7,2) unsigned NOT NULL COMMENT '99,999 hours max per transaction',
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text,
-  PRIMARY KEY (`id_trade`)
+  PRIMARY KEY (`id_trade`),
+  KEY `trade_member_payee_fk_idx` (`id_payer`),
+  CONSTRAINT `trade_member_payee_fk` FOREIGN KEY (`id_payer`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `trade_member_payer_fk` FOREIGN KEY (`id_payer`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
