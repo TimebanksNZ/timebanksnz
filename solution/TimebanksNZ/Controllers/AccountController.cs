@@ -174,7 +174,7 @@ namespace TimebanksNZ.Controllers
                 currUser.City = model.City;
                 currUser.Suburb = model.Suburb;
                 currUser.PostalCode = model.PostalCode;
-                currUser.Community = model.Community;
+                currUser.Community = model.Community;                
                 
                 DI.CurrentRepositoryFactory.CreateUserRepository().Insert(currUser);
 

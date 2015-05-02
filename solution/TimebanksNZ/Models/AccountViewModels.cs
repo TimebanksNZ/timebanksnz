@@ -104,6 +104,9 @@ namespace TimebanksNZ.Models
 
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
+
+        [Display(Name = "Terms and Conditions of Use")]
+        public string TermsConditions{ get; set; }
     }
 
     public class ResetPasswordViewModel
