@@ -109,9 +109,9 @@
     <Compile Include="EntityFramework\trade.cs">
       <DependentUpon>TimebanksNZ.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityTranslator.cs" />
     <Compile Include="MySqlPocoToBEProfile.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="Repositories\TimebankRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
