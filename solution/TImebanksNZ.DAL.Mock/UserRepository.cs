@@ -8,24 +8,22 @@ using TimebanksNZ.DAL.Entities;
 
 namespace TImebanksNZ.DAL.Mock
 {
-    public class MockRepository<T>: IRepository<T> where T : new()
+    public class UserRepository<T>: IRepository<User>
     {
-        public void Update(T entity)
-        {
-                       
+        public void Update(User entity)
+        {           
         }
 
-        public void Insert(T entity)
+        public void Insert(User entity)
         {
-
         }
 
-        public T Get(T entity)
+        public User Get(User entity)
         {
-            return new T();
+            return new User();
         }
 
-        public void Delete(T entity)
+        public void Delete(User entity)
         {
         }
     }

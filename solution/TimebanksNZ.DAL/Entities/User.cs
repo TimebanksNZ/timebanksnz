@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TimebanksNZ.DAL.Entities;
 
-namespace TImebanksNZ.DAL.Mock
+namespace TimebanksNZ.DAL.Entities
 {
     public class User : IUser
     {
