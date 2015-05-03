@@ -69,7 +69,7 @@ namespace TimebanksNZ.Controllers
 
         private IEnumerable<SelectListItem> GetBanks()
         {
-            var tb = new Timebanks.NZ.DAL.MySql.Repositories.TimebankRepository();
+            var tb = new Timebanks.NZ.DAL.MySqlDb.Repositories.TimebankRepository();
             var roles = tb.GetAll()
                         .Select(x =>
                                 new SelectListItem
@@ -169,7 +169,7 @@ namespace TimebanksNZ.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var tb = new Timebanks.NZ.DAL.MySql.Repositories.TimebankRepository();
+            var tb = new Timebanks.NZ.DAL.MySqlDb.Repositories.TimebankRepository();
             var banks = tb.GetAll();
             var model = new RegisterViewModel
             {
