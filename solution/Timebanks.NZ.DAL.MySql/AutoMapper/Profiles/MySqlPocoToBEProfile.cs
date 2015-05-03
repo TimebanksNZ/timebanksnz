@@ -49,6 +49,15 @@ namespace TimebanksNZ.DAL.MySqlDb.AutoMapper.Profiles
                 .ForMember(x => x.Address2, opt => opt.ResolveUsing(timebank => timebank.address_2))
                 ;
 
+            Mapper.CreateMap<offer_need, OfferNeed>()
+                .ForMember(x => x.IsOffer, opt => opt.ResolveUsing(o => o.is_offer))
+                .ForMember(x => x.IdUser, opt => opt.ResolveUsing(o => o.id_user))
+                .ForMember(x => x.IdTimebank, opt => opt.ResolveUsing(o => o.id_timebank))
+                .ForMember(x => x.IdOfferNeed, opt => opt.ResolveUsing(o => o.id_offer_need))
+                .ForMember(x => x.StartDate, opt => opt.ResolveUsing(o => o.start_date))
+                .ForMember(x => x.ExpiryDate, opt => opt.ResolveUsing(o => o.expiry_date))
+                ;
+
             // Why is this not working???
             SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
             DestinationMemberNamingConvention = new PascalCaseNamingConvention();           
