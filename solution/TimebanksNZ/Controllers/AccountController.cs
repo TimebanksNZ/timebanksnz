@@ -461,6 +461,15 @@ namespace TimebanksNZ.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult GetUnapprovedUsers()
+        {
+            var userRepo = DI.CurrentRepositoryFactory.CreateUserRepository();
+            var unapproved = userRepo.All.Where(u => !u.IsApproved);
+            
+            return View();
+        }
+
         //
         // POST: /Account/LogOff
         [HttpPost]

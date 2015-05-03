@@ -8,9 +8,9 @@ using FluentAssertions;
 using NUnit.Framework;
 using Moq;
 using Moq.Protected;
-using Timebanks.NZ.DAL.MySql;
-using Timebanks.NZ.DAL.MySql.AutoMapper.Profiles;
-using Timebanks.NZ.DAL.MySql.EntityFramework;
+using Timebanks.NZ.DAL.MySqlDb;
+using Timebanks.NZ.DAL.MySqlDb.AutoMapper.Profiles;
+using Timebanks.NZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ.DAL.Entities;
 
 namespace TimebanksNZ.Tests.DAL.MySql

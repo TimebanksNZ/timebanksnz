@@ -2,12 +2,14 @@
 using System.Data.Entity.Validation;
 using System.Text;
 using AutoMapper;
-using Timebanks.NZ.DAL.MySql.EntityFramework;
+using Timebanks.NZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
+using System.Linq;
+using System.Collections.Generic;
 
-namespace Timebanks.NZ.DAL.MySql.Repositories
+namespace Timebanks.NZ.DAL.MySqlDb.Repositories
 {
    
     public class UserRepository : IRepository<User>
@@ -83,6 +85,16 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
         public void Delete(User entity)
         {
             throw new NotImplementedException();
+        }
+
+        public IQueryable<User> All
+        {
+            get
+            {
+                var dbContext = new timebanksEntities();
+
+                return Mapper.Map<IQueryable<User>>(dbContext.members.AsQueryable());
+            }
         }
     }
 }
