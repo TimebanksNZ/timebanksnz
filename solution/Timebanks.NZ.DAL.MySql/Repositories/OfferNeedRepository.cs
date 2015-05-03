@@ -15,7 +15,14 @@ namespace TimebanksNZ.DAL.MySqlDb.Repositories
 
         public void Insert(OfferNeed entity)
         {
-            throw new NotImplementedException();
+            var dbContext = new timebanksEntities();
+            var poco = Mapper.Map<offer_need>(entity);
+
+            dbContext.offer_need.Add(poco);
+            dbContext.SaveChanges();
+
+            // Update entity with PK
+            entity.IdOfferNeed = poco.id_offer_need;
         }
 
         public OfferNeed Get(OfferNeed entity)
