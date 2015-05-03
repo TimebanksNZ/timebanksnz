@@ -26,6 +26,12 @@ namespace TimebanksNZ
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/process_customer").Include(
+                       "~/Scripts/jquery-ui-1.8.1.custom.min.js",
+                       "~/Scripts/process_customer.js",
+                       "~/Scripts/maps_api.js"));
+        
         }
     }
 }
