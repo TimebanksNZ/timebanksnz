@@ -32,5 +32,6 @@ namespace TimebanksNZ.DAL.Entities
         public bool IsDeleted { get; set; }
         public Guid IdMember { get; set; }
         public bool Approved { get; set; }
+        public int PerferredContact { get; set; }
     }
 }
