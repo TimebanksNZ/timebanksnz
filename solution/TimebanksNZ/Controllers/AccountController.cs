@@ -457,6 +457,12 @@ namespace TimebanksNZ.Controllers
             return View(unapprovedUsers);
         }
 
+        [HttpPost]
+        public ActionResult ApproveUsers(IEnumerable<User> users)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         //
         // POST: /Account/LogOff
         [HttpPost]

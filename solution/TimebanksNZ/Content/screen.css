@@ -151,7 +151,9 @@ h1 span  {
 }
 footer {
     background-color: #337ab7;
-    height: 250px;
+    height: 100px;
+    width: 100%;
+    margin-top:20px;
 }
 footer .footer-block {
     color: #FFFFFF;
