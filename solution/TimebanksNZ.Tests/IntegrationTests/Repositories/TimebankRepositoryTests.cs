@@ -14,7 +14,7 @@ namespace TimebanksNZ.Tests.IntegrationTests.Repositories
 	[TestFixture]
 	public class TimebankRepositoryTests
 	{		
-		internal TimebankRepository CreateTestTarget(Mocks mocks)
+		internal TimebankRepository CreateTestTarget()
 		{
 			var target = new TimebankRepository();
 			return target;
@@ -45,8 +45,7 @@ namespace TimebanksNZ.Tests.IntegrationTests.Repositories
 		[Test]
 		public void Update_should_update_database_record()
 		{
-			var mocks = new Mocks();
-			var target = CreateTestTarget(mocks);
+			var target = CreateTestTarget();
 
 			Timebank entity = new Timebank()
 			{
