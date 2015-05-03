@@ -7,8 +7,8 @@
     <ProjectGuid>{6FB80237-EC54-4F8F-8A83-7E0AF6690DBF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Timebanks.NZ.DAL.MySqlDb</RootNamespace>
-    <AssemblyName>Timebanks.NZ.DAL.MySql</AssemblyName>
+    <RootNamespace>TimebanksNZ.DAL.MySqlDb</RootNamespace>
+    <AssemblyName>TimebanksNZ.DAL.MySql</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

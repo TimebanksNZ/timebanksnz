@@ -1,4 +1,4 @@
-﻿using Timebanks.NZ.DAL.MySqlDb.Repositories;
+﻿using TimebanksNZ.DAL.MySqlDb.Repositories;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 

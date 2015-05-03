@@ -3,14 +3,14 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Text;
 using AutoMapper;
-using Timebanks.NZ.DAL.MySqlDb.EntityFramework;
+using TimebanksNZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Timebanks.NZ.DAL.MySqlDb.Repositories
+namespace TimebanksNZ.DAL.MySqlDb.Repositories
 {
    
     public class UserRepository : IRepository<User>
