@@ -27,12 +27,9 @@ namespace TImebanksNZ.DAL.Mock
         {
         }
 
-        public IQueryable<User> All
+        public List<User> GetAll()
         {
-            get
-            {
-                return new User[0].AsQueryable();
-            }
+            return new User[0].ToList();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace TimebanksNZ.DAL
         void Insert(T entity);
         T Get(T entity);
         void Delete(T entity);
-        IQueryable<T> All { get; }
+        List<T> GetAll();
     }
 
 }

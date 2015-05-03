@@ -39,48 +39,52 @@ namespace TimebanksNZ.DAL.MySqlDb.Repositories
 
         public void Update(User updatedEntity)
         {
-            var dbContext = new timebanksEntities();
-            dbContext.Entry(Mapper.Map<member>(updatedEntity)).State = EntityState.Modified;
-            dbContext.SaveChanges();
+            using (var dbContext = new timebanksEntities())
+            {
+                dbContext.Entry(Mapper.Map<member>(updatedEntity)).State = EntityState.Modified;
+                dbContext.SaveChanges();
+            }
         }
 
         public void Insert(User entity)
         {
-            var dbContext = new timebanksEntities();
-
-            TimebankRepository.GetByName(entity.Community);
-            
-            entity.IdMember = Guid.NewGuid();
-
-            var poco = Mapper.Map<member>(entity);
-            dbContext.members.Add(poco);
-
-            try
+            using (var dbContext = new timebanksEntities())
             {
-                dbContext.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                StringBuilder sb = new StringBuilder();
 
-                foreach (var failure in ex.EntityValidationErrors)
+                TimebankRepository.GetByName(entity.Community);
+
+                entity.IdMember = Guid.NewGuid();
+
+                var poco = Mapper.Map<member>(entity);
+                dbContext.members.Add(poco);
+
+                try
                 {
-                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
-                    foreach (var error in failure.ValidationErrors)
+                    dbContext.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    foreach (var failure in ex.EntityValidationErrors)
                     {
-                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
-                        sb.AppendLine();
+                        sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                        foreach (var error in failure.ValidationErrors)
+                        {
+                            sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                            sb.AppendLine();
+                        }
                     }
+
+                    throw new DbEntityValidationException(
+                        "Entity Validation Failed - errors follow:\n" +
+                        sb.ToString(), ex
+                    );
                 }
 
-                throw new DbEntityValidationException(
-                    "Entity Validation Failed - errors follow:\n" +
-                    sb.ToString(), ex
-                );
+                // Update PK
+                entity.IdMember = poco.id_member;
             }
-
-            // Update PK
-            entity.IdMember = poco.id_member;
         }
 
         public User Get(User entity)
@@ -93,13 +97,11 @@ namespace TimebanksNZ.DAL.MySqlDb.Repositories
             throw new NotImplementedException();
         }
 
-        public IQueryable<User> All
+        public List<User> GetAll()
         {
-            get
+            using (var dbContext = new timebanksEntities())
             {
-                var dbContext = new timebanksEntities();
-
-                return Mapper.Map<IQueryable<User>>(dbContext.members.AsQueryable());
+                return Mapper.Map<List<User>>(dbContext.members.AsEnumerable<member>().ToList());
             }
         }
     }
