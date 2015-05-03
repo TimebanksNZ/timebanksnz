@@ -135,6 +135,7 @@ namespace TimebanksNZ.Models
         [Required(ErrorMessage = "Please select your local time bank.")]
         [Display(Name = "Local Time Bank")]
         public string SelectedBank { get; set; }
+        public int BankId { get; set; }
         public IEnumerable<SelectListItem> bank { get; set; }
 
         [Display(Name = "Geo Lat")]
