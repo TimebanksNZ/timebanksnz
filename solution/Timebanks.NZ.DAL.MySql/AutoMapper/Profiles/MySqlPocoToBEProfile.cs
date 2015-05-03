@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Timebanks.NZ.DAL.MySqlDb.EntityFramework;
+using TimebanksNZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ.DAL.Entities;
 
-namespace Timebanks.NZ.DAL.MySqlDb.AutoMapper.Profiles
+namespace TimebanksNZ.DAL.MySqlDb.AutoMapper.Profiles
 {
     /// <summary>
     /// Profile for auto mapping rules of poco objects from the database to the business entities

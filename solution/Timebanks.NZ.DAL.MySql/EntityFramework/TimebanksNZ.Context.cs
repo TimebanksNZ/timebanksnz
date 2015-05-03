@@ -7,13 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Timebanks.NZ.DAL.MySqlDb.EntityFramework
+namespace TimebanksNZ.DAL.MySqlDb.EntityFramework
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
+    
     public partial class timebanksEntities : DbContext
     {
         public timebanksEntities()

@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Timebanks.NZ.DAL.MySqlDb.EntityFramework;
+using TimebanksNZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 
-namespace Timebanks.NZ.DAL.MySqlDb.Repositories
+namespace TimebanksNZ.DAL.MySqlDb.Repositories
 {
     public class TimebankRepository : ITimebankRepository
     {

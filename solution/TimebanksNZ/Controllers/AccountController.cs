@@ -69,7 +69,7 @@ namespace TimebanksNZ.Controllers
 
         private IEnumerable<SelectListItem> GetBanks()
         {
-            var tb = new Timebanks.NZ.DAL.MySqlDb.Repositories.TimebankRepository();
+            var tb = new TimebanksNZ.DAL.MySqlDb.Repositories.TimebankRepository();
             var roles = tb.GetAll()
                         .Select(x =>
                                 new SelectListItem
@@ -169,7 +169,7 @@ namespace TimebanksNZ.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var tb = new Timebanks.NZ.DAL.MySqlDb.Repositories.TimebankRepository();
+            var tb = new TimebanksNZ.DAL.MySqlDb.Repositories.TimebankRepository();
             var banks = tb.GetAll();
             var model = new RegisterViewModel
             {
@@ -449,12 +449,12 @@ namespace TimebanksNZ.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUnapprovedUsers()
+        public ActionResult UnapprovedUsers()
         {
             var userRepo = DI.CurrentRepositoryFactory.CreateUserRepository();
-            var unapproved = userRepo.All.Where(u => !u.IsApproved);
+            var unapprovedUsers = userRepo.All.Where(u => !u.IsApproved);
             
-            return View();
+            return View(unapprovedUsers);
         }
 
         //
