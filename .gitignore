@@ -1,8 +1,8 @@
 */obj/*
 **/obj/*
 **/bin/*
-*.mdf
-*.ldf
-*.orig
-*.suo
-*.csproj.user
+**/*.mdf
+**/*.ldf
+**/*.orig
+**/*.suo
+**/*.csproj.user
