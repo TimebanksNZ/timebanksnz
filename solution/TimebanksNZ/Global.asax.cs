@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Timebanks.NZ.DAL.MySql;
+using Timebanks.NZ.DAL.MySql.AutoMapper;
 
 namespace TimebanksNZ
 {

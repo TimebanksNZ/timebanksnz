@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Timebanks.NZ.DAL.MySql.EntityFramework;
+using TimebanksNZ;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 
 namespace Timebanks.NZ.DAL.MySql.Repositories
 {
-    public class TimebankRepository : IRepository<Timebank>
+    public class TimebankRepository : ITimebankRepository
     {
         public void Update(Timebank entity)
         {
@@ -27,16 +29,25 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
         public List<Timebank> GetAll()
         {
             var dbContext = new timebanksEntities();
+            var results = dbContext.timebanks;
+            List<Timebank> timebanks = new List<Timebank>();
 
-            var allTimebanks = new List<Timebank>();
-            foreach (var timebank in dbContext.timebanks)
+            foreach (var timebank in results)
             {
-                Timebank tb = Mapper.Map<Timebank>(timebank);
-                allTimebanks.Add(tb);
-            }            
+                timebanks.Add(Mapper.Map<Timebank>(timebank));
+            }
 
-            return allTimebanks;
+            return timebanks;
         }
+
+        public Timebank GetByName(string community)
+        {
+            var dbContext = new timebanksEntities();
+            var timebank = dbContext.timebanks.FirstOrDefault(tb => tb.name == community);
+
+            return Mapper.Map<Timebank>(timebank);
+        }
+
         public void Delete(Timebank entity)
         {
             throw new NotImplementedException();

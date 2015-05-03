@@ -68,7 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutomapperMySqlConfiguration.cs" />
+    <Compile Include="AutoMapper\AutomapperMySqlConfiguration.cs" />
     <Compile Include="EntityFramework\category.cs">
       <DependentUpon>TimebanksNZ.tt</DependentUpon>
     </Compile>
@@ -111,7 +111,7 @@
     <Compile Include="EntityFramework\trade.cs">
       <DependentUpon>TimebanksNZ.tt</DependentUpon>
     </Compile>
-    <Compile Include="MySqlPocoToBEProfile.cs" />
+    <Compile Include="AutoMapper\Profiles\MySqlPocoToBEProfile.cs" />
     <Compile Include="Repositories\TimebankRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

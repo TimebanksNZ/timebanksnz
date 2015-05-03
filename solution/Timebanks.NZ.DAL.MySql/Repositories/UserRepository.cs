@@ -3,6 +3,7 @@ using System.Data.Entity.Validation;
 using System.Text;
 using AutoMapper;
 using Timebanks.NZ.DAL.MySql.EntityFramework;
+using TimebanksNZ;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 
@@ -10,7 +11,29 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
 {
    
     public class UserRepository : IRepository<User>
-    {        
+    {
+        private ITimebankRepository _timebankRepository;
+        public ITimebankRepository TimebankRepository
+        {
+            get
+            {
+                // Lazy instantiation of default class
+                if (_timebankRepository == null)
+                {
+                    _timebankRepository = new TimebankRepository();
+                }
+                return _timebankRepository;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+                _timebankRepository = value;
+            }
+        }
+
         public void Update(User entity)
         {
             throw new NotImplementedException();
@@ -20,10 +43,10 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
         {
             var dbContext = new timebanksEntities();
 
-            // HACK NJ: Bloody foreign keys
-            entity.IdTimebank = 1;
-
+            TimebankRepository.GetByName(entity.Community);
+            
             entity.IdMember = Guid.NewGuid();
+
             var poco = Mapper.Map<member>(entity);
             dbContext.members.Add(poco);
 

@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{BD0A16AA-729
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TImebanksNZ.DAL.Mock", "TImebanksNZ.DAL.Mock\TImebanksNZ.DAL.Mock.csproj", "{60A9CE91-B9C0-455B-8E82-5038D05A2A89}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CAE6928E-CB67-46AB-8394-19DFE1952839}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4C20A6D3-25AF-4238-80E6-5DD2C1CB921C}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
