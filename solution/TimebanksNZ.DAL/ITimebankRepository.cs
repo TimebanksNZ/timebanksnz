@@ -9,7 +9,6 @@ namespace TimebanksNZ
     /// </summary>
     public interface ITimebankRepository : IRepository<Timebank>
     {
-        List<Timebank> GetAll();
         Timebank GetByName(string community);
     }
 }

@@ -66,13 +66,5 @@ namespace TimebanksNZ.DAL.MySqlDb.Repositories
             dbContext.timebanks.Remove(tb);
             dbContext.SaveChanges();
         }
-
-        public IQueryable<Timebank> All
-        {
-            get
-            {
-                return new Timebank[0].AsQueryable();
-            }
-        }
     }
 }

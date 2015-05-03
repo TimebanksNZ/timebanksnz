@@ -128,7 +128,7 @@
     <Compile Include="IntegrationTests\Repositories\TimebankRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="UserRepositoryTests.cs" />
+    <Compile Include="IntegrationTests\Repositories\UserRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

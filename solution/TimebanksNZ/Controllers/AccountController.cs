@@ -452,7 +452,7 @@ namespace TimebanksNZ.Controllers
         public ActionResult UnapprovedUsers()
         {
             var userRepo = DI.CurrentRepositoryFactory.CreateUserRepository();
-            var unapprovedUsers = userRepo.All.Where(u => !u.IsApproved);
+            var unapprovedUsers = userRepo.GetAll().Where(u => !u.IsApproved);
             
             return View(unapprovedUsers);
         }
