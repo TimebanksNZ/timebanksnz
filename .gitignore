@@ -3,3 +3,6 @@
 **/bin/*
 *.mdf
 *.ldf
+*.orig
+*.suo
+*.csproj.user
