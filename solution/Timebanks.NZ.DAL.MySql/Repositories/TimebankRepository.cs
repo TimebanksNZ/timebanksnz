@@ -1,31 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
-using Timebanks.NZ.DAL.MySql.EntityFramework;
+using TimebanksNZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 
-namespace Timebanks.NZ.DAL.MySql.Repositories
+namespace TimebanksNZ.DAL.MySqlDb.Repositories
 {
     public class TimebankRepository : ITimebankRepository
     {
-        public void Update(Timebank entity)
+        public void Update(Timebank updatedEntity)
         {
-            throw new NotImplementedException();
+            var dbContext = new timebanksEntities();
+            dbContext.Entry(Mapper.Map<timebank>(updatedEntity)).State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
 
         public void Insert(Timebank entity)
         {
-            throw new NotImplementedException();
+            var dbContext = new timebanksEntities();
+            timebank poco = Mapper.Map<timebank>(entity);
+
+            dbContext.timebanks.Add(poco);
+            dbContext.SaveChanges();
+
+            // Update entity with PK
+            entity.IdTimebank = poco.id_timebank;
         }
 
         public Timebank Get(Timebank entity)
         {
             throw new NotImplementedException();
         }
-
+ 
         public List<Timebank> GetAll()
         {
             var dbContext = new timebanksEntities();
@@ -50,7 +60,19 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
 
         public void Delete(Timebank entity)
         {
-            throw new NotImplementedException();
+            var dbContext = new timebanksEntities();
+            var tb = Mapper.Map<timebank>(entity);
+            dbContext.timebanks.Attach(tb);
+            dbContext.timebanks.Remove(tb);
+            dbContext.SaveChanges();
+        }
+
+        public IQueryable<Timebank> All
+        {
+            get
+            {
+                return new Timebank[0].AsQueryable();
+            }
         }
     }
 }

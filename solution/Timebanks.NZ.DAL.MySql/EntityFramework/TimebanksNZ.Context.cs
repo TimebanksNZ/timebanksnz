@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Timebanks.NZ.DAL.MySql.EntityFramework
+namespace TimebanksNZ.DAL.MySqlDb.EntityFramework
 {
     using System;
     using System.Data.Entity;

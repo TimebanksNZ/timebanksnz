@@ -26,5 +26,13 @@ namespace TImebanksNZ.DAL.Mock
         public void Delete(User entity)
         {
         }
+
+        public IQueryable<User> All
+        {
+            get
+            {
+                return new User[0].AsQueryable();
+            }
+        }
     }
 }
