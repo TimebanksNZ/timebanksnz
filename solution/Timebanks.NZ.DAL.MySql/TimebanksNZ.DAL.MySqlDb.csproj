@@ -116,6 +116,9 @@
       <DependentUpon>TimebanksNZ.tt</DependentUpon>
     </Compile>
     <Compile Include="AutoMapper\Profiles\MySqlPocoToBEProfile.cs" />
+    <Compile Include="Repositories\IOfferNeedRepository.cs" />
+    <Compile Include="Repositories\OfferNeed.cs" />
+    <Compile Include="Repositories\OfferNeedRepository.cs" />
     <Compile Include="Repositories\TimebankRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

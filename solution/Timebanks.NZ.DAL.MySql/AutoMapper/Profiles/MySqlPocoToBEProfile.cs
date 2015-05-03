@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TimebanksNZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ.DAL.Entities;
+using TimebanksNZ.DAL.MySqlDb.Repositories;
 
 namespace TimebanksNZ.DAL.MySqlDb.AutoMapper.Profiles
 {
@@ -73,7 +74,13 @@ namespace TimebanksNZ.DAL.MySqlDb.AutoMapper.Profiles
             Mapper.CreateMap<Timebank, timebank>()
                 .ForMember(x => x.offer_need, opt => opt.Ignore())
                 .ForMember(x => x.members, opt => opt.Ignore());
-                                
+
+            Mapper.CreateMap<OfferNeed, offer_need>()
+                .ForMember(x => x.member, opt => opt.Ignore())
+                .ForMember(x => x.timebank, opt => opt.Ignore())
+                .ForMember(x => x.tags, opt => opt.Ignore())
+                ;
+                    
             SourceMemberNamingConvention = new PascalCaseNamingConvention();
             DestinationMemberNamingConvention = new LowerUnderscoreNamingConvention();
         }

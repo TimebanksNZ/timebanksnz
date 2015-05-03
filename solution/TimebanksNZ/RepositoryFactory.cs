@@ -16,5 +16,10 @@ namespace TimebanksNZ
         {
             return new TimebankRepository();
         }
+
+        public IOfferNeedRepository CreateOfferNeedRepository()
+        {
+            return new OfferNeedRepository();
+        }
     }
 }

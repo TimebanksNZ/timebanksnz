@@ -1,6 +1,7 @@
 ﻿using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 using TImebanksNZ.DAL.Mock;
+using TimebanksNZ.DAL.MySqlDb.Repositories;
 
 namespace TimebanksNZ
 {
@@ -8,5 +9,6 @@ namespace TimebanksNZ
     {
         IRepository<User> CreateUserRepository();
         ITimebankRepository CreateTimebankRepository();
+        IOfferNeedRepository CreateOfferNeedRepository();
     }
 }
