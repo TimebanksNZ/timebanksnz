@@ -5,8 +5,8 @@ using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 using FluentAssertions;
-using Timebanks.NZ.DAL.MySql.AutoMapper;
-using Timebanks.NZ.DAL.MySql.Repositories;
+using Timebanks.NZ.DAL.MySqlDb.AutoMapper;
+using Timebanks.NZ.DAL.MySqlDb.Repositories;
 using TimebanksNZ.DAL.Entities;
 
 namespace TimebanksNZ.Tests.IntegrationTests.Repositories
