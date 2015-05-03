@@ -22,7 +22,7 @@ function loadPopupBox() {    // To Load the Popupbox
 
 function initialize(){
 //MAP
-  var latlng = new google.maps.LatLng(-36.8575374, 174.76);
+    var latlng = new google.maps.LatLng(-43.5300, 172.6203);
   var options = {
     zoom: 13,
     center: latlng,
