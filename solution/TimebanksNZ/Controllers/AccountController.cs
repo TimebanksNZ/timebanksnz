@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TimebanksNZ.Models;
 using TimebanksNZ.DAL.Entities;
+using System.Collections.Generic;
 
 namespace TimebanksNZ.Controllers
 {
@@ -65,6 +66,21 @@ namespace TimebanksNZ.Controllers
                 _userManager = value;
             }
         }
+
+        private IEnumerable<SelectListItem> GetBanks()
+        {
+            var tb = new Timebanks.NZ.DAL.MySql.Repositories.TimebankRepository();
+            var roles = tb.GetAll()
+                        .Select(x =>
+                                new SelectListItem
+                                {
+                                    Value = x.IdTimebank.ToString(),
+                                    Text = x.Name
+                                });
+
+            return new SelectList(roles, "Value", "Text");
+        }
+
 
         //
         // GET: /Account/Login
@@ -153,41 +169,11 @@ namespace TimebanksNZ.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var banks = new[]{
-                new { Value = "Addington", Text = "Addington"},
-                new { Value = "Belfast", Text = "Belfast"},
-                new { Value = "Bridge2Rocks", Text = "Bridge2Rocks"},
-                new { Value = "Dunedin", Text = "Dunedin"},
-                new { Value = "East Bay", Text = "East Bay"},
-                new { Value = "Hamilton", Text = "Hamilton"},
-                new { Value = "Hokonui", Text = "Hokonui"},
-                new { Value = "Kaitaia", Text = "Kaitaia"},
-                new { Value = "Levin", Text = "Levin"},
-                new { Value = "Lyttelton", Text = "Lyttelton"},
-                new { Value = "NewBrighton", Text = "New Brighton"},
-                new { Value = "Raglan", Text = "Raglan"},
-                new { Value = "Rangitikei", Text = "Rangitikei"},
-                new { Value = "Roimata", Text = "Roimata"},
-                new { Value = "SouthernHutt", Text = "Southern Hutt"},
-                new { Value = "Sumner", Text = "Sumner"},
-                new { Value = "Taita", Text = "Taita"},
-                new { Value = "Taranaki", Text = "Taranaki"},
-                new { Value = "Tauranga", Text = "Tauranga"},
-                new { Value = "Waimakariri", Text = "Waimakariri"},
-                new { Value = "UpperHutt", Text = "Upper Hutt"},
-                new { Value = "Waihi", Text = "Waihi"},
-                new { Value = "Wairarapa", Text = "Wairarapa"},
-                new { Value = "WellingtonSouth", Text = "Wellington South"},
-                new { Value = "WestTararua", Text = "West Tararua"},
-            };
-
+            var tb = new Timebanks.NZ.DAL.MySql.Repositories.TimebankRepository();
+            var banks = tb.GetAll();
             var model = new RegisterViewModel
             {
-                bank = banks.Select(b => new SelectListItem
-                {
-                    Value = b.Value,
-                    Text = b.Text
-                }),
+                bank = GetBanks(),
                 IsAddressPublic = true,
                 IsEmailPublic = true,
                 IsPhonePublic = true
@@ -200,7 +186,7 @@ namespace TimebanksNZ.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, string timeBank)
         {
             if (ModelState.IsValid)
             {
@@ -224,6 +210,7 @@ namespace TimebanksNZ.Controllers
                 currUser.Created = DateTime.Now;
                 currUser.GeoLat = model.GeoLat;
                 currUser.GeoLong = model.GeoLong;
+                currUser.IdTimebank = int.Parse(model.SelectedBank);
 
                 DI.CurrentRepositoryFactory.CreateUserRepository().Insert(currUser);
 
