@@ -32,5 +32,6 @@ namespace TimebanksNZ.DAL.Entities
         public bool IsEmailValidated { get; set; }
         public bool IsDeleted { get; set; }
         public Guid IdMember { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

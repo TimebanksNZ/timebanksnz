@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
-using Timebanks.NZ.DAL.MySql.EntityFramework;
+using Timebanks.NZ.DAL.MySqlDb.EntityFramework;
 using TimebanksNZ;
 using TimebanksNZ.DAL;
 using TimebanksNZ.DAL.Entities;
 
-namespace Timebanks.NZ.DAL.MySql.Repositories
+namespace Timebanks.NZ.DAL.MySqlDb.Repositories
 {
     public class TimebankRepository : ITimebankRepository
     {
@@ -65,6 +65,14 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
             dbContext.timebanks.Attach(tb);
             dbContext.timebanks.Remove(tb);
             dbContext.SaveChanges();
+        }
+
+        public IQueryable<Timebank> All
+        {
+            get
+            {
+                return new Timebank[0].AsQueryable();
+            }
         }
     }
 }

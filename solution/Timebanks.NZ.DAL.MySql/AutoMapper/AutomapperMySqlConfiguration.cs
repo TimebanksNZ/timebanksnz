@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Timebanks.NZ.DAL.MySql.AutoMapper.Profiles;
+using Timebanks.NZ.DAL.MySqlDb.AutoMapper.Profiles;
 
-namespace Timebanks.NZ.DAL.MySql.AutoMapper
+namespace Timebanks.NZ.DAL.MySqlDb.AutoMapper
 {
     public static class AutomapperMySqlConfiguration
     {

@@ -112,6 +112,7 @@ namespace TimebanksNZ.Models
         [Display(Name = "Commmunity")]
         public string Community { get; set; }
 
+        [StringLength(6, ErrorMessage = "The {0} must be maximum {1} characters long.")]
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
 
@@ -134,6 +135,7 @@ namespace TimebanksNZ.Models
         [Required(ErrorMessage = "Please select your local time bank.")]
         [Display(Name = "Local Time Bank")]
         public string SelectedBank { get; set; }
+        public int BankId { get; set; }
         public IEnumerable<SelectListItem> bank { get; set; }
 
         [Display(Name = "Geo Lat")]

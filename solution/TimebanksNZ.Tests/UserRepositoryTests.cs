@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Timebanks.NZ.DAL.MySql.EntityFramework;
+using Timebanks.NZ.DAL.MySqlDb.EntityFramework;
 
 namespace TimebanksNZ.Tests
 {
