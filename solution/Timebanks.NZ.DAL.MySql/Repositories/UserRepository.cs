@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Text;
 using AutoMapper;
@@ -34,9 +35,11 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
             }
         }
 
-        public void Update(User entity)
+        public void Update(User updatedEntity)
         {
-            throw new NotImplementedException();
+            var dbContext = new timebanksEntities();
+            dbContext.Entry(Mapper.Map<member>(updatedEntity)).State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
 
         public void Insert(User entity)
@@ -73,6 +76,9 @@ namespace Timebanks.NZ.DAL.MySql.Repositories
                     sb.ToString(), ex
                 );
             }
+
+            // Update PK
+            entity.IdMember = poco.id_member;
         }
 
         public User Get(User entity)
