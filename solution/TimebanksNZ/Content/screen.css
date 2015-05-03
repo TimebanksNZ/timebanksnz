@@ -1,0 +1,196 @@
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../fonts/glyphicons-halflings-regular.eot');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+body {
+    font-family: Montserrat,sans-serif;
+    background: url(../img/backgrounds/tile.jpg) transparent repeat scroll;
+}
+div.browsehappy, div.election2014banner {
+    background-color: #FFFFFF;
+    height: 100px;
+    text-align: center;
+}
+div.browsehappy p, div.election2014banner p {
+    font-size: 18px;
+    margin-top: 35px;
+}
+#top-links {
+    background-color: #2dc4b9;
+}
+#top-links .communities {
+    
+}
+#top-links .communities ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+#top-links .communities ul li {
+    float: left;
+    display: block;
+    margin-bottom: 4px;
+    margin-right: 20px;
+}
+#top-links .communities ul li a {
+    color: #fff;
+    font-size: 0.8em;
+}
+#logo-area .bunch-of-buttons {
+    display: none;
+}
+#logo-area .login-and-stuff ul {
+    list-style: none;
+}
+#logo-area .login-and-stuff ul li {
+    float: right;
+}
+#logo-area .social-media ul {
+    list-style: none;
+}
+#logo-area .social-media ul li {
+    float: right;
+}
+#page-header {
+    display: none;
+}
+#page-header .container, section .container {
+    
+}
+@media only screen and (min-width: 365px) {
+    
+}
+@media only screen and (min-width: 767px) {
+    #logo-area .bunch-of-buttons {
+        display: block;
+    }
+}
+@media only screen and (min-width: 992px) {
+    
+}
+@media only screen and (min-width: 1200px) {
+    
+}
+nav.navbar-default {
+    background-color: #337ab7;
+    border-color: #337ab7;
+    color: #fff;
+}
+.navbar-default .navbar-brand {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-brand:hover {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-toggle {
+    background-color: #337ab7;
+    border: none;
+    color: #ffffff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #337ab7;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.navbar-default .navbar-nav > li > a {
+    color: #29323C;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #FFFFFF;
+}
+#page-header .global-nav {
+    padding: 5px 0 0;
+    text-align: center;
+}
+#page-header .global-nav ul {
+    margin-bottom: 0;
+}
+#page-header .global-nav ul.list-inline > li {
+    padding-left: 0;
+}
+#page-header .global-nav ul li {
+    
+}
+#page-header .global-nav ul li a, #page-header .global-nav ul li a:visited {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    padding: 0.3em 1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 14px;
+}
+#page-header .global-nav ul li a.high-court, #page-header .global-nav ul li a.high-court:visited {
+    background-color: #337ab7;
+}
+#page-header .global-nav ul li a:hover {
+    color: #FFFFFF;
+}
+h1 span  {
+    display: none;
+}
+@media only screen and (min-width: 768px) {
+    h1 {
+        text-align: center;
+    }
+    #page-header {
+        display: block;
+        background-color: #2FAECE;
+    }
+    nav {
+        display: none;
+    }
+}
+@media only screen and (min-width: 992px) {
+    
+}
+@media only screen and (min-width: 1200px) {
+    
+}
+footer {
+    background-color: #337ab7;
+    height: 100px;
+    width: 100%;
+    margin-top:20px;
+}
+footer .footer-block {
+    color: #FFFFFF;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+footer .footer-block ul {
+    list-style: none;
+    padding: 0;
+}
+footer .footer-block ul li {
+    display: block;
+    margin: 10px 0;
+    padding: 0;
+}
+footer .footer-block ul li a {
+    color: #FFFFFF;
+}
+footer .footer-block ul li a:hover {
+    
+}
+footer .footer-block ul li a:active {
+    
+}
+@media only screen and (min-width: 768px) {
+    footer .footer-block ul li {
+        float: left;
+        display: block;
+        margin: 0 10px;
+    }
+    footer .footer-block ul li a {
+        color: #FFFFFF;
+    }
+}
+@media only screen and (min-width: 992px) {
+    
+}
+@media only screen and (min-width: 1200px) {
+    
+}

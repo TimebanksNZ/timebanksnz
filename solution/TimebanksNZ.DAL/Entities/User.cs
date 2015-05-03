@@ -25,13 +25,13 @@ namespace TimebanksNZ.DAL.Entities
         public bool IsAddressPublic { get; set; }
         public bool IsEmailPublic { get; set; }
         public bool AcceptedTerms { get; set; }
-        public bool Approved { get; set; }
         public DateTime Created { get; set; }
         public double GeoLat { get; set; }
         public double GeoLong { get; set; }
         public bool IsEmailValidated { get; set; }
         public bool IsDeleted { get; set; }
         public Guid IdMember { get; set; }
-        public bool IsApproved { get; set; }
+        public bool Approved { get; set; }
+        public int PerferredContact { get; set; }
     }
 }
