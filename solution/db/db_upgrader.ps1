@@ -9,19 +9,26 @@ function Connect($username, $password, $database, $hostname) {
 }
 
 function ApplyUpgradeScripts($connection) {
-    Get-ChildItem -Path 'UpgradeScripts' | where-object { $_.Name -eq '*.sql' } #need to figure out how to do "Matches"
+    Get-ChildItem -Path 'UpgradeScripts' |
+        where-object { $_ -like '*.sql'} |
+        foreach-object { 
+            $query = [IO.File]::ReadAllText( 'UpgradeScripts\' + $_ )
+            RunQuery $connection $query
+        }
 }
 
-function RunQuery($connection) {
+function RunQuery($connection, $query) {
     Try {
-        $Command = New-Object MySql.Data.MySqlClient.MySqlCommand($Query, $Connection)
-        $DataAdapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($Command)
-        $DataSet = New-Object System.Data.DataSet
-        $RecordCount = $dataAdapter.Fill($dataSet, "data")
-        $DataSet.Tables[0]
+        $Command = New-Object MySql.Data.MySqlClient.MySqlCommand( $query, $connection)
+        $transaction = $connection.BeginTransaction()
+        $Command.ExecuteNonQuery()
+        $transaction.Commit()
     }
     Catch {
         Write-Host "ERROR : Unable to run query : $query `n$Error[0]"
+        $transaction.Rollback()
+        $connection.close()
+        exit 1
     }
 }
 
