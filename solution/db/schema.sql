@@ -1,4 +1,3 @@
-DROP DATABASE  IF EXISTS `timebanks`;
 CREATE DATABASE  IF NOT EXISTS `timebanks` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `timebanks`;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
@@ -32,7 +31,7 @@ CREATE TABLE `category` (
   `parent_id` int(11) DEFAULT '0',
   PRIMARY KEY (`id_category`),
   UNIQUE KEY `id_category_UNIQUE` (`id_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +65,7 @@ CREATE TABLE `country` (
   `geo_lat` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_country`),
   UNIQUE KEY `id_country_UNIQUE` (`id_country`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,6 +144,231 @@ CREATE TABLE `member_skill` (
   CONSTRAINT `member_skill_category_fkey` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `member_skill_member_fkey` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_applications`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_applications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_applications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) DEFAULT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_membership`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_membership`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_membership` (
+  `userId` int(11) NOT NULL DEFAULT '0',
+  `Email` varchar(128) DEFAULT NULL,
+  `Comment` varchar(255) DEFAULT NULL,
+  `Password` varchar(128) NOT NULL,
+  `PasswordKey` char(32) DEFAULT NULL,
+  `PasswordFormat` tinyint(4) DEFAULT NULL,
+  `PasswordQuestion` varchar(255) DEFAULT NULL,
+  `PasswordAnswer` varchar(255) DEFAULT NULL,
+  `IsApproved` tinyint(1) DEFAULT NULL,
+  `LastActivityDate` datetime DEFAULT NULL,
+  `LastLoginDate` datetime DEFAULT NULL,
+  `LastPasswordChangedDate` datetime DEFAULT NULL,
+  `CreationDate` datetime DEFAULT NULL,
+  `IsLockedOut` tinyint(1) DEFAULT NULL,
+  `LastLockedOutDate` datetime DEFAULT NULL,
+  `FailedPasswordAttemptCount` int(10) unsigned DEFAULT NULL,
+  `FailedPasswordAttemptWindowStart` datetime DEFAULT NULL,
+  `FailedPasswordAnswerAttemptCount` int(10) unsigned DEFAULT NULL,
+  `FailedPasswordAnswerAttemptWindowStart` datetime DEFAULT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='2';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_paths`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_paths`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_paths` (
+  `applicationId` int(11) NOT NULL,
+  `pathId` varchar(36) NOT NULL,
+  `path` varchar(256) NOT NULL,
+  `loweredPath` varchar(256) NOT NULL,
+  PRIMARY KEY (`pathId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_personalizationallusers`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_personalizationallusers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_personalizationallusers` (
+  `pathId` varchar(36) NOT NULL,
+  `pageSettings` blob NOT NULL,
+  `lastUpdatedDate` datetime NOT NULL,
+  PRIMARY KEY (`pathId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_personalizationperuser`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_personalizationperuser`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_personalizationperuser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicationId` int(11) NOT NULL,
+  `pathId` varchar(36) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `pageSettings` blob NOT NULL,
+  `lastUpdatedDate` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_profiles`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_profiles` (
+  `userId` int(11) NOT NULL,
+  `valueindex` longtext,
+  `stringdata` longtext,
+  `binarydata` longblob,
+  `lastUpdatedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_roles`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicationId` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_schemaversion`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_schemaversion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_schemaversion` (
+  `version` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_sessioncleanup`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_sessioncleanup`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_sessioncleanup` (
+  `LastRun` datetime NOT NULL,
+  `IntervalMinutes` int(11) NOT NULL,
+  `ApplicationId` int(11) NOT NULL,
+  PRIMARY KEY (`ApplicationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_sessions`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_sessions` (
+  `SessionId` varchar(191) NOT NULL,
+  `ApplicationId` int(11) NOT NULL,
+  `Created` datetime NOT NULL,
+  `Expires` datetime NOT NULL,
+  `LockDate` datetime NOT NULL,
+  `LockId` int(11) NOT NULL,
+  `Timeout` int(11) NOT NULL,
+  `Locked` tinyint(1) NOT NULL,
+  `SessionItems` longblob,
+  `Flags` int(11) NOT NULL,
+  PRIMARY KEY (`SessionId`,`ApplicationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_sitemap`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_sitemap`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_sitemap` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Title` varchar(50) DEFAULT NULL,
+  `Description` varchar(512) DEFAULT NULL,
+  `Url` varchar(512) DEFAULT NULL,
+  `Roles` varchar(1000) DEFAULT NULL,
+  `ParentId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_users`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicationId` int(11) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `isAnonymous` tinyint(1) NOT NULL DEFAULT '1',
+  `lastActivityDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `my_aspnet_usersinroles`
+--
+
+DROP TABLE IF EXISTS `my_aspnet_usersinroles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `my_aspnet_usersinroles` (
+  `userId` int(11) NOT NULL DEFAULT '0',
+  `roleId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`userId`,`roleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +457,7 @@ CREATE TABLE `timebank` (
   UNIQUE KEY `id_timebank_UNIQUE` (`id_timebank`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `url_UNIQUE` (`url`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Timebanks of NZ.  ';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Timebanks of NZ.  ';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +481,6 @@ CREATE TABLE `trade` (
   CONSTRAINT `trade_member_payer_fk` FOREIGN KEY (`id_payer`) REFERENCES `member` (`id_member`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -267,4 +490,4 @@ CREATE TABLE `trade` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-02 16:41:35
+-- Dump completed on 2015-07-08 19:42:45
