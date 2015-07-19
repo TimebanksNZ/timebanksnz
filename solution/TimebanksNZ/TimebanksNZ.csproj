@@ -190,7 +190,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\google_address_finder.css" />
     <Content Include="Content\jQueryPopUp.css" />
     <Content Include="Content\screen.css" />
     <Content Include="favicon.ico" />
