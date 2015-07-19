@@ -19,13 +19,9 @@ namespace TimebanksNZ
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/screen.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/process_customer").Include(
                        "~/Scripts/jquery-ui-1.8.1.custom.min.js",

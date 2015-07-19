@@ -7,15 +7,6 @@ body {
     font-family: Montserrat,sans-serif;
     background: url(../img/backgrounds/tile.jpg) transparent repeat scroll;
 }
-div.browsehappy, div.election2014banner {
-    background-color: #FFFFFF;
-    height: 100px;
-    text-align: center;
-}
-div.browsehappy p, div.election2014banner p {
-    font-size: 18px;
-    margin-top: 35px;
-}
 #top-links {
     background-color: #2dc4b9;
 }
@@ -56,20 +47,6 @@ div.browsehappy p, div.election2014banner p {
     display: none;
 }
 #page-header .container, section .container {
-    
-}
-@media only screen and (min-width: 365px) {
-    
-}
-@media only screen and (min-width: 767px) {
-    #logo-area .bunch-of-buttons {
-        display: block;
-    }
-}
-@media only screen and (min-width: 992px) {
-    
-}
-@media only screen and (min-width: 1200px) {
     
 }
 nav.navbar-default {
@@ -131,29 +108,13 @@ nav.navbar-default {
 h1 span  {
     display: none;
 }
-@media only screen and (min-width: 768px) {
-    h1 {
-        text-align: center;
-    }
-    #page-header {
-        display: block;
-        background-color: #2FAECE;
-    }
-    nav {
-        display: none;
-    }
-}
-@media only screen and (min-width: 992px) {
-    
-}
-@media only screen and (min-width: 1200px) {
-    
-}
 footer {
     background-color: #337ab7;
     height: 100px;
     width: 100%;
     margin-top:20px;
+    position: fixed;
+    bottom: 0px;
 }
 footer .footer-block {
     color: #FFFFFF;
@@ -176,21 +137,5 @@ footer .footer-block ul li a:hover {
     
 }
 footer .footer-block ul li a:active {
-    
-}
-@media only screen and (min-width: 768px) {
-    footer .footer-block ul li {
-        float: left;
-        display: block;
-        margin: 0 10px;
-    }
-    footer .footer-block ul li a {
-        color: #FFFFFF;
-    }
-}
-@media only screen and (min-width: 992px) {
-    
-}
-@media only screen and (min-width: 1200px) {
     
 }
