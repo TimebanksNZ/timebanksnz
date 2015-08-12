@@ -17,7 +17,7 @@ namespace TimebanksNZ.DAL.MySqlDb.EntityFramework
         public user()
         {
             this.Claims = new HashSet<userclaim>();
-            this.userlogins = new HashSet<userlogin>();
+            this.Logins = new HashSet<userlogin>();
             this.Roles = new HashSet<role>();
         }
     
@@ -35,7 +35,7 @@ namespace TimebanksNZ.DAL.MySqlDb.EntityFramework
         public string UserName { get; set; }
     
         public virtual ICollection<userclaim> Claims { get; set; }
-        public virtual ICollection<userlogin> userlogins { get; set; }
+        public virtual ICollection<userlogin> Logins { get; set; }
         public virtual ICollection<role> Roles { get; set; }
     }
 }

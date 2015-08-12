@@ -763,7 +763,7 @@ warning 6005: The data type 'udouble' is currently not supported for the target 
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Claims" Relationship="timebanksModel.ApplicationUser_Claims" FromRole="user" ToRole="userclaim" />
-          <NavigationProperty Name="userlogins" Relationship="timebanksModel.ApplicationUser_Logins" FromRole="user" ToRole="userlogin" />
+          <NavigationProperty Name="Logins" Relationship="timebanksModel.ApplicationUser_Logins" FromRole="user" ToRole="userlogin" />
           <NavigationProperty Name="Roles" Relationship="timebanksModel.userroles" FromRole="user" ToRole="role" />
         </EntityType>
         <Association Name="ApplicationUser_Claims">
