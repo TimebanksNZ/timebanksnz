@@ -8,3 +8,4 @@
 **/*.csproj.user
 solution/packages/**
 
+solution/**/*.csproj.user
