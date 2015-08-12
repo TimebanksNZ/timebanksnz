@@ -6,3 +6,5 @@
 **/*.orig
 **/*.suo
 **/*.csproj.user
+solution/packages/**
+
