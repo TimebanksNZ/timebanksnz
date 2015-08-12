@@ -34,5 +34,9 @@ namespace TimebanksNZ.DAL.MySqlDb.EntityFramework
         public virtual DbSet<tag> tags { get; set; }
         public virtual DbSet<timebank> timebanks { get; set; }
         public virtual DbSet<trade> trades { get; set; }
+        public virtual DbSet<role> roles { get; set; }
+        public virtual DbSet<userclaim> userclaims { get; set; }
+        public virtual DbSet<userlogin> userlogins { get; set; }
+        public virtual DbSet<user> users { get; set; }
     }
 }

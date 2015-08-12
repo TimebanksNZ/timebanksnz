@@ -45,6 +45,7 @@ namespace TimebanksNZ.DAL.MySqlDb.EntityFramework
         public bool is_email_public { get; set; }
         public bool is_deleted { get; set; }
         public bool is_phone_public { get; set; }
+        public Nullable<int> id_preferred_contact_method { get; set; }
     
         public virtual timebank timebank { get; set; }
         public virtual ICollection<offer_need> offer_need { get; set; }

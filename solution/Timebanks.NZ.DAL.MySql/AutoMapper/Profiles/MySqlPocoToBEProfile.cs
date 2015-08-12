@@ -58,6 +58,20 @@ namespace TimebanksNZ.DAL.MySqlDb.AutoMapper.Profiles
                 .ForMember(x => x.ExpiryDate, opt => opt.ResolveUsing(o => o.expiry_date))
                 ;
 
+            Mapper.CreateMap<user, user>()
+                .ForMember(x => x.Email, opt => opt.ResolveUsing(o => o.Email))
+                .ForMember(x => x.Id, opt => opt.ResolveUsing(o => o.Id))
+                .ForMember(x => x.EmailConfirmed, opt => opt.ResolveUsing(o => o.EmailConfirmed))
+                .ForMember(x => x.PasswordHash, opt => opt.ResolveUsing(o => o.PasswordHash))
+                .ForMember(x => x.SecurityStamp, opt => opt.ResolveUsing(o => o.SecurityStamp))
+                .ForMember(x => x.PhoneNumber, opt => opt.ResolveUsing(o => o.PhoneNumber))
+                .ForMember(x => x.PhoneNumberConfirmed, opt => opt.ResolveUsing(o => o.PhoneNumberConfirmed))
+                .ForMember(x => x.TwoFactorEnabled, opt => opt.ResolveUsing(o => o.TwoFactorEnabled))
+                .ForMember(x => x.LockoutEndDateUtc, opt => opt.ResolveUsing(o => o.LockoutEndDateUtc))
+                .ForMember(x => x.LockoutEnabled, opt => opt.ResolveUsing(o => o.LockoutEnabled))
+                .ForMember(x => x.AccessFailedCount, opt => opt.ResolveUsing(o => o.AccessFailedCount))
+                .ForMember(x => x.UserName, opt => opt.ResolveUsing(o => o.UserName))
+                ;
             // Why is this not working???
             SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
             DestinationMemberNamingConvention = new PascalCaseNamingConvention();           
@@ -89,7 +103,22 @@ namespace TimebanksNZ.DAL.MySqlDb.AutoMapper.Profiles
                 .ForMember(x => x.timebank, opt => opt.Ignore())
                 .ForMember(x => x.tags, opt => opt.Ignore())
                 ;
-                    
+
+            Mapper.CreateMap<user, user>()
+                .ForMember(x => x.Email, opt => opt.ResolveUsing(o => o.Email))
+                .ForMember(x => x.Id, opt => opt.ResolveUsing(o => o.Id))
+                .ForMember(x => x.EmailConfirmed, opt => opt.ResolveUsing(o => o.EmailConfirmed))
+                .ForMember(x => x.PasswordHash, opt => opt.ResolveUsing(o => o.PasswordHash))
+                .ForMember(x => x.SecurityStamp, opt => opt.ResolveUsing(o => o.SecurityStamp))
+                .ForMember(x => x.PhoneNumber, opt => opt.ResolveUsing(o => o.PhoneNumber))
+                .ForMember(x => x.PhoneNumberConfirmed, opt => opt.ResolveUsing(o => o.PhoneNumberConfirmed))
+                .ForMember(x => x.TwoFactorEnabled, opt => opt.ResolveUsing(o => o.TwoFactorEnabled))
+                .ForMember(x => x.LockoutEndDateUtc, opt => opt.ResolveUsing(o => o.LockoutEndDateUtc))
+                .ForMember(x => x.LockoutEnabled, opt => opt.ResolveUsing(o => o.LockoutEnabled))
+                .ForMember(x => x.AccessFailedCount, opt => opt.ResolveUsing(o => o.AccessFailedCount))
+                .ForMember(x => x.UserName, opt => opt.ResolveUsing(o => o.UserName))
+                ;
+
             SourceMemberNamingConvention = new PascalCaseNamingConvention();
             DestinationMemberNamingConvention = new LowerUnderscoreNamingConvention();
         }
